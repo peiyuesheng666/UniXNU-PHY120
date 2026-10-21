@@ -8,8 +8,8 @@
 ## 一键编译
 
 ```sh
-git clone https://github.com/peiyuesheng666/UniXNU-phy120
-cd UniXNU-phy120
+git clone https://github.com/peiyuesheng666/UniXNU-PHY120
+cd UniXNU-PHY120
 ./setup.sh /path/to/IMAGES/uefi.elf
 ```
 
