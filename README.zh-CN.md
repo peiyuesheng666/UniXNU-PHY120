@@ -73,8 +73,4 @@ SEC 随即以 `Decompress Failed - Invalid Parameter` 失败。
 
 ## 当前状态
 
-* **M1 完成**：UniXNU 启动管理器已在设备上运行并显示菜单
-* 内层固件卷的 LZMA 解压问题已解决（脏缓存行写回修复）
-* 原厂 DXE 驱动可以从原厂 `uefi.elf` 抽出来（`FV_IMAGE` → GUID `1D301FE9-…` → gzip），
-  但完整厂商驱动栈仍停在 DXE 阶段（SMEM / RAM 分区表）
-* `kernel.macho` 尚未编译——该步骤需要 macOS + Xcode，其余全部可在 Linux/WSL 上完成
+UniXNU 启动管理器已在设备上运行并显示菜单。

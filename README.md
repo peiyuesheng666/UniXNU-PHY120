@@ -75,8 +75,4 @@ bootloader relies on the DTB section sitting at `0x11A5000`.
 
 ## Status
 
-* M1 done: the UniXNU boot manager runs and shows its menu on the device
-* LZMA inner-volume decompression solved (cache line write-back fix)
-* Stock DXE drivers can be extracted (`FV_IMAGE` -> GUID `1D301FE9-...` -> gzip)
-  but the full vendor stack still stops in DXE (SMEM / RAM partition table)
-* `kernel.macho` not built yet - that step needs macOS + Xcode
+The UniXNU boot manager runs on the device and shows its menu.
