@@ -1,0 +1,17 @@
+version = 1
+
+[boot]
+timeout = 3
+default = "xnu"
+
+[[entry]]
+id = "xnu"
+title = "OPPO Find X7 Ultra - Darwin XNU"
+type = "xnu"
+path = "Payloads/kernel.macho"
+
+[[entry]]
+id = "exit"
+title = "Return to firmware"
+type = "action"
+action = "exit"
