@@ -3,6 +3,8 @@
 Device port of [UniXNU](https://github.com/UniXNU/UniXNU) to the
 **OPPO Find X7 Ultra** (satellite edition, model **PHY120**, SoC **SM8650**).
 
+[English](README.md) | [简体中文](README.zh-CN.md)
+
 ## One-shot build
 
 ```sh
