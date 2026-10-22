@@ -20,6 +20,9 @@ permissions:
   contents: read
 
 env:
+  # build.sh asks interactively which macOS SDK to target when this is unset;
+  # CI has no TTY, so pin it (same value the other SM8650 port uses).
+  MACOS_VERSION: '13.5'
   HARNESS_COMMIT: 663906528d1cd5ea8fde7de6f16de73db9511549
 
 jobs:
@@ -59,6 +62,7 @@ jobs:
         env:
           MACHINE_CONFIG: ${{ inputs.machine_config }}
           KERNEL_CONFIG: ${{ inputs.kernel_config }}
+          MACOS_VERSION: '13.5'
         run: |
           # the harness only lists arm64e; the phone needs plain arm64
           sed -i '' 's/ARCHS="x86_64 arm64e" VALID_ARCHS="x86_64 arm64e"/ARCHS="x86_64 arm64e arm64" VALID_ARCHS="x86_64 arm64e arm64"/' build.sh
