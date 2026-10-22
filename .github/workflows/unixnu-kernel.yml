@@ -147,6 +147,28 @@ jobs:
           EOF
           done
 
+      - name: Provide the display kit stubs
+        working-directory: UniXNU
+        run: |
+          # build-xnu-4k-baseline.sh expects the display kits as prebuilt archives and
+          # aborts on test -f when they are missing. Compile a stub archive that
+          # defines the three probes the patched sources reference, so the link can
+          # finish; the real kit comes later.
+          ROOT=out/PHY120/tree
+          mkdir -p "$ROOT/build/native-legacy-display" "$ROOT/build/native-mobile-display"
+          cat > /tmp/display-stub.c <<'EOF'
+          /* PHY120: link stubs for the display kit probes. */
+          int native_legacy_display_probe(void) { return 1; }
+          int native_legacy_display_late_probe(void) { return 1; }
+          int native_mobile_display_provider_probe(void) { return 1; }
+          EOF
+          xcrun -sdk iphoneos clang -target arm64-apple-ios17.0 -c /tmp/display-stub.c -o /tmp/display-stub.o
+          xcrun llvm-ar rcs "$ROOT/build/native-legacy-display/libNativeLegacyDisplay.late.a" /tmp/display-stub.o
+          cp "$ROOT/build/native-legacy-display/libNativeLegacyDisplay.late.a" \
+             "$ROOT/build/native-mobile-display/libNativeMobileDisplay.late.a"
+          ls -l "$ROOT/build/native-legacy-display" "$ROOT/build/native-mobile-display"
+          xcrun nm -g "$ROOT/build/native-mobile-display/libNativeMobileDisplay.late.a" | head
+
       - name: Build and prelink the kernel
         working-directory: UniXNU
         env:
