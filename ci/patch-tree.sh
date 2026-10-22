@@ -19,3 +19,12 @@ grep -v -E 'DriverKit/[A-Za-z0-9_]+\.iig\.cpp' "$CONF" > "$CONF.new" || true
 mv "$CONF.new" "$CONF"
 after=$(wc -l < "$CONF")
 echo "PHY120: iokit/conf/files $before -> $after lines (DriverKit iig dropped)"
+
+# The kernel-server MIG flags ask for -mach_msg2, which the mig shipped with this
+# Xcode does not implement: it forwards the flag to clang, which rejects it, and
+# mig then fails with "no SubSystem declaration". Drop it from the flag list.
+MAKEDEF="$ROOT/.cache/xnu-work/makedefs/MakeInc.def"
+if [ -f "$MAKEDEF" ] && grep -q -- '-mach_msg2' "$MAKEDEF"; then
+  sed -i '' 's/^\([[:space:]]*\)-mach_msg2[[:space:]]*$/\1# PHY120: -mach_msg2 dropped, not supported by this mig/' "$MAKEDEF"
+  echo "PHY120: dropped -mach_msg2 from MIGKSFLAGS"
+fi
