@@ -102,6 +102,15 @@ jobs:
               print("already patched")
           EOF
 
+      - name: Allow the kernel config to be selected
+        working-directory: UniXNU
+        run: |
+          # build-xnu-4k-baseline.sh hardcodes KERNEL_CONFIGS=DEVELOPMENT, which pulls
+          # in every DriverKit iig translation unit; RELEASE usually does not.
+          sed -i '' 's/KERNEL_CONFIGS=DEVELOPMENT/KERNEL_CONFIGS=${XNU_KERNEL_CONFIG:-DEVELOPMENT}/g' \
+            scripts/build-xnu-4k-baseline.sh
+          grep -n 'KERNEL_CONFIGS=' scripts/build-xnu-4k-baseline.sh | head -4
+
       - name: Build and prelink the kernel
         working-directory: UniXNU
         env:
