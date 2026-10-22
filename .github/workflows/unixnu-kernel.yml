@@ -110,7 +110,9 @@ jobs:
           # in every DriverKit iig translation unit; RELEASE usually does not.
           sed -i '' 's/KERNEL_CONFIGS=DEVELOPMENT/KERNEL_CONFIGS=${XNU_KERNEL_CONFIG:-DEVELOPMENT}/g' \
             scripts/build-xnu-4k-baseline.sh
-          grep -n 'KERNEL_CONFIGS=' scripts/build-xnu-4k-baseline.sh | head -4
+          sed -i '' 's/MACHINE_CONFIGS=BCM2837/MACHINE_CONFIGS=${XNU_MACHINE_CONFIG:-BCM2837}/g' \
+            scripts/build-xnu-4k-baseline.sh
+          grep -n 'MACHINE_CONFIGS=\|KERNEL_CONFIGS=' scripts/build-xnu-4k-baseline.sh | head -6
 
       - name: Hook the tree patch into the build
         working-directory: UniXNU
@@ -138,6 +140,7 @@ jobs:
           # absent from the open source tree; nothing sets it, so an unused bit
           # compiles and behaves identically. Keep build.sh's own warning flags.
           XNU_KERNEL_CONFIG: RELEASE
+          XNU_MACHINE_CONFIG: T6020
           XNU_EXTRA_CFLAGS: '-Wno-reserved-identifier -Wno-pre-c11-compat -Wno-missing-designated-field-initializers -Wno-suggest-override -Wno-unnecessary-virtual-specifier -Wno-suggest-destructor-override -Wno-ms-bitfield-padding -DBINDM_FORCE_ROOT=0x80000000U'
         run: |
           set -o pipefail
