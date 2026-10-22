@@ -1,0 +1,73 @@
+name: PHY120 XNU build
+
+# Builds the Darwin/XNU kernel for the OPPO Find X7 Ultra (SM8650) on a GitHub
+# macOS runner, so no Mac is needed. The harness is blacktop/darwin-xnu-build,
+# pinned; MACHINE_CONFIG=SWEET is the Apple machine config used by the other
+# SM8650 ports (OnePlus Ace 5 / giulia).
+on:
+  workflow_dispatch:
+    inputs:
+      machine_config:
+        description: XNU MACHINE_CONFIG
+        type: string
+        default: SWEET
+      kernel_config:
+        description: XNU KERNEL_CONFIG
+        type: choice
+        default: DEVELOPMENT
+        options: [DEVELOPMENT, RELEASE, KASAN]
+permissions:
+  contents: read
+
+env:
+  HARNESS_COMMIT: 663906528d1cd5ea8fde7de6f16de73db9511549
+
+jobs:
+  build:
+    runs-on: macos-14
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Fetch the pinned XNU harness
+        run: |
+          git init -q dxb
+          git -C dxb fetch -q --depth 1 https://github.com/blacktop/darwin-xnu-build $HARNESS_COMMIT
+          git -C dxb checkout -q FETCH_HEAD
+          ls dxb
+
+      - name: Toolchain
+        run: |
+          brew install cmake ninja unifdef || true
+          XC=$(ls -d /Applications/Xcode_*.app | sort -V | head -1)
+          echo "DEVELOPER_DIR=$XC/Contents/Developer" >> "$GITHUB_ENV"
+          sudo xcode-select -s "$XC"
+          xcodebuild -version
+          xcrun --sdk iphoneos --show-sdk-version || true
+
+      - name: Build kernel
+        working-directory: dxb
+        env:
+          MACHINE_CONFIG: ${{ inputs.machine_config }}
+          KERNEL_CONFIG: ${{ inputs.kernel_config }}
+        run: |
+          # the harness only lists arm64e; the phone needs plain arm64
+          sed -i '' 's/ARCHS="x86_64 arm64e" VALID_ARCHS="x86_64 arm64e"/ARCHS="x86_64 arm64e arm64" VALID_ARCHS="x86_64 arm64e arm64"/' build.sh
+          set -o pipefail
+          bash build.sh 2>&1 | tee ../xnu-build.log
+
+      - name: Collect artifacts
+        if: always()
+        run: |
+          mkdir -p out
+          find dxb/fakeroot/System/Library/Kernels -type f -maxdepth 1 -print -exec cp {} out/ \; || true
+          ls -l out || true
+          tail -60 xnu-build.log || true
+
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: phy120-xnu-${{ inputs.machine_config }}
+          path: |
+            out/
+            xnu-build.log
+          retention-days: 14
