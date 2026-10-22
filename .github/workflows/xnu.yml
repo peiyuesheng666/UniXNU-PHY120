@@ -37,10 +37,20 @@ jobs:
 
       - name: Toolchain
         run: |
-          brew install cmake ninja unifdef || true
+          # The harness only installs deps when any of jq/gum/xcodes/cmake/ninja is
+          # missing, and `brew install xcodes` has no bottle on arm64 macOS, so we
+          # pre-install the rest and provide a stub xcodes. Xcode itself ships with
+          # the runner, and install_deps skips `xcodes install` when it is present.
+          brew install jq gum bash cmake ninja unifdef || true
+          for d in /opt/homebrew/bin /usr/local/bin; do
+            sudo mkdir -p "$d"
+            printf '#!/bin/sh\nexit 0\n' | sudo tee "$d/xcodes" >/dev/null
+            sudo chmod +x "$d/xcodes"
+          done
           XC=$(ls -d /Applications/Xcode_*.app | sort -V | head -1)
           echo "DEVELOPER_DIR=$XC/Contents/Developer" >> "$GITHUB_ENV"
           sudo xcode-select -s "$XC"
+          command -v xcodes; command -v gum; command -v jq
           xcodebuild -version
           xcrun --sdk iphoneos --show-sdk-version || true
 
