@@ -102,25 +102,40 @@ jobs:
               print("already patched")
           EOF
 
-      - name: Fill Apple-internal gaps in the open source tree
+      - name: Inject the missing Apple-internal define
         working-directory: UniXNU
         run: |
-          # bsd/miscfs/bindfs/bind_vfsops.c uses BINDM_FORCE_ROOT, a mount flag that
-          # only exists in Apple's internal headers. Nothing in the open tree sets it,
-          # so defining it on an otherwise unused bit compiles and behaves identically.
+          # The xnu work tree is created inside the build, so the define has to be
+          # injected into the build script itself, right after the source prepare.
           python3 - <<'EOF'
           import pathlib
-          f = pathlib.Path("out/PHY120/tree/.cache/xnu-work/bsd/miscfs/bindfs/bind_vfsops.c")
-          if not f.exists():
-              print("bind_vfsops.c not present, skipping"); raise SystemExit(0)
-          s = f.read_text()
-          if "BINDM_FORCE_ROOT" not in s.split("\n", 40)[0] and "#ifndef BINDM_FORCE_ROOT" not in s:
-              s = ("/* added by the PHY120 CI: Apple-internal mount flag, unused in the open tree */\n"
-                   "#ifndef BINDM_FORCE_ROOT\n#define BINDM_FORCE_ROOT 0x80000000u\n#endif\n\n") + s
-              f.write_text(s)
-              print("defined BINDM_FORCE_ROOT in bind_vfsops.c")
+          p = pathlib.Path("scripts/build-xnu-4k-baseline.sh")
+          s = p.read_text()
+          marker = "python3 scripts/prepare-xnu-source.py"
+          inject = """
+          # PHY120 CI: bsd/miscfs/bindfs/bind_vfsops.c uses BINDM_FORCE_ROOT, an
+          # Apple-internal mount flag absent from the open source tree. Nothing here
+          # sets it, so an unused bit compiles and behaves identically.
+          python3 - <<'INNER'
+          import pathlib
+          f = pathlib.Path('.cache/xnu-work/bsd/miscfs/bindfs/bind_vfsops.c')
+          if f.exists():
+              t = f.read_text()
+              if '#define BINDM_FORCE_ROOT' not in t:
+                  f.write_text('/* PHY120 CI */\n#ifndef BINDM_FORCE_ROOT\n'
+                               '#define BINDM_FORCE_ROOT 0x80000000u\n#endif\n\n' + t)
+                  print('PHY120 CI: defined BINDM_FORCE_ROOT')
+          INNER
+          """
+          if "PHY120 CI: defined BINDM_FORCE_ROOT" not in s:
+              if marker in s:
+                  s = s.replace(marker, marker + "\n" + inject, 1)
+                  p.write_text(s)
+                  print("build script patched at the source-prepare step")
+              else:
+                  print("marker not found, build script left alone")
           else:
-              print("already present")
+              print("already patched")
           EOF
 
       - name: Build and prelink the kernel
