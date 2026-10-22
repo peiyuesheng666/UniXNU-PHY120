@@ -102,44 +102,13 @@ jobs:
               print("already patched")
           EOF
 
-      - name: Inject the missing Apple-internal define
-        working-directory: UniXNU
-        run: |
-          # The xnu work tree is created inside the build, so the define has to be
-          # injected into the build script itself, right after the source prepare.
-          python3 - <<'EOF'
-          import pathlib
-          p = pathlib.Path("scripts/build-xnu-4k-baseline.sh")
-          s = p.read_text()
-          marker = "python3 scripts/prepare-xnu-source.py"
-          inject = """
-          # PHY120 CI: bsd/miscfs/bindfs/bind_vfsops.c uses BINDM_FORCE_ROOT, an
-          # Apple-internal mount flag absent from the open source tree. Nothing here
-          # sets it, so an unused bit compiles and behaves identically.
-          python3 - <<'INNER'
-          import pathlib
-          f = pathlib.Path('.cache/xnu-work/bsd/miscfs/bindfs/bind_vfsops.c')
-          if f.exists():
-              t = f.read_text()
-              if '#define BINDM_FORCE_ROOT' not in t:
-                  f.write_text('/* PHY120 CI */\n#ifndef BINDM_FORCE_ROOT\n'
-                               '#define BINDM_FORCE_ROOT 0x80000000u\n#endif\n\n' + t)
-                  print('PHY120 CI: defined BINDM_FORCE_ROOT')
-          INNER
-          """
-          if "PHY120 CI: defined BINDM_FORCE_ROOT" not in s:
-              if marker in s:
-                  s = s.replace(marker, marker + "\n" + inject, 1)
-                  p.write_text(s)
-                  print("build script patched at the source-prepare step")
-              else:
-                  print("marker not found, build script left alone")
-          else:
-              print("already patched")
-          EOF
-
       - name: Build and prelink the kernel
         working-directory: UniXNU
+        env:
+          # bindfs uses BINDM_FORCE_ROOT, an Apple-internal mount flag that is
+          # absent from the open source tree; nothing sets it, so an unused bit
+          # compiles and behaves identically. Keep build.sh's own warning flags.
+          XNU_EXTRA_CFLAGS: '-Wno-reserved-identifier -Wno-pre-c11-compat -Wno-missing-designated-field-initializers -Wno-suggest-override -Wno-unnecessary-virtual-specifier -Wno-suggest-destructor-override -Wno-ms-bitfield-padding -DBINDM_FORCE_ROOT=0x80000000U'
         run: |
           set -o pipefail
           ./unixnu build kernel 2>&1 | tee ../kernel.log
