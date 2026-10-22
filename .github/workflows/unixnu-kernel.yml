@@ -11,6 +11,7 @@ on:
     branches: [main]
     paths:
       - 'configs/**'
+      - 'ci/**'
       - 'uefi/**'
       - 'board.toml'
       - '.github/workflows/unixnu-kernel.yml'
