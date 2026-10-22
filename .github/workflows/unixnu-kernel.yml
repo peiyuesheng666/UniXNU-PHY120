@@ -116,24 +116,36 @@ jobs:
 
       - name: Hook the tree patch into the build
         working-directory: UniXNU
+        env:
+          GH_TOKEN_FOR_FETCH: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          cp ../port/ci/patch-tree.sh scripts/phy120-patch-tree.sh
-          chmod +x scripts/phy120-patch-tree.sh
-          rm -rf scripts/phy120-xnu-cache
-          cp -r ../port/ci/xnu-cache scripts/phy120-xnu-cache
-          python3 - <<'EOF'
-          import pathlib
-          p = pathlib.Path("scripts/build-xnu-4k-baseline.sh")
-          s = p.read_text()
+          # The build runs out/<board>/tree/scripts/build-xnu-4k-baseline.sh, not the
+          # copy in the UniXNU clone, so install the hook into every copy that exists
+          # and insert the call before UniXNU's source prepare step.
+          HOOK=../port/ci/patch-tree.sh
+          CACHE=../port/ci/xnu-cache
+          for D in scripts out/PHY120/tree/scripts; do
+            [ -d "$D" ] || { echo "skip $D (missing)"; continue; }
+            cp "$HOOK" "$D/phy120-patch-tree.sh"
+            chmod +x "$D/phy120-patch-tree.sh"
+            rm -rf "$D/phy120-xnu-cache"
+            cp -r "$CACHE" "$D/phy120-xnu-cache"
+            B="$D/build-xnu-4k-baseline.sh"
+            [ -f "$B" ] || { echo "skip $B (missing)"; continue; }
+            python3 - "$B" <<'EOF'
+          import pathlib, sys
+          p = pathlib.Path(sys.argv[1]); s = p.read_text()
           marker = "python3 scripts/prepare-xnu-source.py"
           call = "bash scripts/phy120-patch-tree.sh"
-          if call not in s and marker in s:
-              s = s.replace(marker, marker + "\n" + call, 1)
-              p.write_text(s)
-              print("build script hooked")
+          if call in s:
+              print("already hooked:", p)
+          elif marker in s:
+              p.write_text(s.replace(marker, call + "\n" + marker, 1))
+              print("hooked:", p)
           else:
-              print("hook already present or marker missing")
+              print("marker missing in", p)
           EOF
+          done
 
       - name: Build and prelink the kernel
         working-directory: UniXNU
