@@ -111,6 +111,25 @@ jobs:
             scripts/build-xnu-4k-baseline.sh
           grep -n 'KERNEL_CONFIGS=' scripts/build-xnu-4k-baseline.sh | head -4
 
+      - name: Hook the tree patch into the build
+        working-directory: UniXNU
+        run: |
+          cp ../port/ci/patch-tree.sh scripts/phy120-patch-tree.sh
+          chmod +x scripts/phy120-patch-tree.sh
+          python3 - <<'EOF'
+          import pathlib
+          p = pathlib.Path("scripts/build-xnu-4k-baseline.sh")
+          s = p.read_text()
+          marker = "python3 scripts/prepare-xnu-source.py"
+          call = "bash scripts/phy120-patch-tree.sh"
+          if call not in s and marker in s:
+              s = s.replace(marker, marker + "\n" + call, 1)
+              p.write_text(s)
+              print("build script hooked")
+          else:
+              print("hook already present or marker missing")
+          EOF
+
       - name: Build and prelink the kernel
         working-directory: UniXNU
         env:
