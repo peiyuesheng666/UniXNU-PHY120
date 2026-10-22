@@ -163,11 +163,11 @@ jobs:
           int native_mobile_display_provider_probe(void) { return 1; }
           EOF
           xcrun -sdk iphoneos clang -target arm64-apple-ios17.0 -c /tmp/display-stub.c -o /tmp/display-stub.o
-          xcrun llvm-ar rcs "$ROOT/build/native-legacy-display/libNativeLegacyDisplay.late.a" /tmp/display-stub.o
+          ar rcs "$ROOT/build/native-legacy-display/libNativeLegacyDisplay.late.a" /tmp/display-stub.o
           cp "$ROOT/build/native-legacy-display/libNativeLegacyDisplay.late.a" \
              "$ROOT/build/native-mobile-display/libNativeMobileDisplay.late.a"
           ls -l "$ROOT/build/native-legacy-display" "$ROOT/build/native-mobile-display"
-          xcrun nm -g "$ROOT/build/native-mobile-display/libNativeMobileDisplay.late.a" | head
+          nm -g "$ROOT/build/native-mobile-display/libNativeMobileDisplay.late.a" | head
 
       - name: Build and prelink the kernel
         working-directory: UniXNU
