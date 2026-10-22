@@ -28,3 +28,30 @@ if [ -f "$MAKEDEF" ] && grep -q -- '-mach_msg2' "$MAKEDEF"; then
   sed -i '' 's/^\([[:space:]]*\)-mach_msg2[[:space:]]*$/\1# PHY120: -mach_msg2 dropped, not supported by this mig/' "$MAKEDEF"
   echo "PHY120: dropped -mach_msg2 from MIGKSFLAGS"
 fi
+
+# Authenticate the Apple directory listings. Without this the shared runner IP hits
+# the anonymous API rate limit (HTTP 403) and the source prepare aborts.
+PREP="$ROOT/.cache/xnu-work/../scripts/prepare-xnu-source.py"
+for CAND in "$ROOT/scripts/prepare-xnu-source.py" "$ROOT/../scripts/prepare-xnu-source.py"; do
+  [ -f "$CAND" ] || continue
+  python3 - "$CAND" <<'INNER'
+import os, pathlib, sys
+p = pathlib.Path(sys.argv[1]); s = p.read_text()
+if "GH_TOKEN_FOR_FETCH" in s:
+    print("PHY120: fetch already authenticated"); raise SystemExit(0)
+tok = os.environ.get("GH_TOKEN_FOR_FETCH", "")
+if not tok:
+    print("PHY120: no token in env, leaving fetch unauthenticated"); raise SystemExit(0)
+inject = ("_tok = os.environ.get('GH_TOKEN_FOR_FETCH')\n"
+          "if _tok:\n"
+          "    _orig = urllib.request.urlopen\n"
+          "    def _open(url, *a, **kw):\n"
+          "        req = urllib.request.Request(url if isinstance(url, str) else url)\n"
+          "        req.add_header('Authorization', 'Bearer ' + _tok)\n"
+          "        return _orig(req, *a, **kw)\n"
+          "    urllib.request.urlopen = _open\n")
+s = s.replace("import urllib.request", "import urllib.request\n" + inject, 1)
+p.write_text(s)
+print("PHY120: authenticated", p)
+INNER
+done
