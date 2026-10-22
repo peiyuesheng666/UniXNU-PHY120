@@ -22,7 +22,7 @@ permissions:
 env:
   # build.sh asks interactively which macOS SDK to target when this is unset;
   # CI has no TTY, so pin it (same value the other SM8650 port uses).
-  MACOS_VERSION: '13.5'
+  MACOS_VERSION: '14.6'
   HARNESS_COMMIT: 663906528d1cd5ea8fde7de6f16de73db9511549
 
 jobs:
@@ -57,12 +57,29 @@ jobs:
           xcodebuild -version
           xcrun --sdk iphoneos --show-sdk-version || true
 
+      - name: Apply the UniXNU patch set
+        run: |
+          # UniXNU pins xnu-10063.141.1 (Darwin 23.6) and ships the patches that make it
+          # build for a non-Apple ARM64 board (4 KiB pages, DT platform, prelink ABI).
+          git clone -q --depth 1 https://github.com/UniXNU/UniXNU.git unixnu
+          ls unixnu/patches/xnu | head -20
+          cd dxb/xnu
+          applied=0; skipped=0
+          for p in ../unixnu/patches/xnu/*.patch; do
+            if git apply --check "$p" 2>/dev/null; then
+              git apply "$p" && applied=$((applied+1))
+            else
+              skipped=$((skipped+1)); echo "skip $(basename $p)"
+            fi
+          done
+          echo "applied=$applied skipped=$skipped"
+
       - name: Build kernel
         working-directory: dxb
         env:
           MACHINE_CONFIG: ${{ inputs.machine_config }}
           KERNEL_CONFIG: ${{ inputs.kernel_config }}
-          MACOS_VERSION: '13.5'
+          MACOS_VERSION: '14.6'
         run: |
           # the harness only lists arm64e; the phone needs plain arm64
           sed -i '' 's/ARCHS="x86_64 arm64e" VALID_ARCHS="x86_64 arm64e"/ARCHS="x86_64 arm64e arm64" VALID_ARCHS="x86_64 arm64e arm64"/' build.sh
