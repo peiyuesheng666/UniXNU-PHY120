@@ -2,8 +2,8 @@
 
 | 项 | 值 |
 | --- | --- |
-| 时间 | 2026-10-22T12:41:36Z |
-| 提交 | `4c040dbcfe3ee930e3d059c9d2b9676f5709977b` |
+| 时间 | 2026-10-22T12:49:05Z |
+| 提交 | `8e7e4377976c13611b7c3307f793e0fa555af89f` |
 | 触发 | push |
 | 作业状态 | failure |
 
@@ -21,8 +21,6 @@
 == kernel: XNU
 == kernel: bootstrap pass for the compile records
 + bash /Users/runner/work/UniXNU-PHY120/UniXNU-PHY120/UniXNU/out/PHY120/tree/scripts/build-xnu-4k-baseline.sh
-      vtable for IOExclaveProxy in IOService.cpo
-      vtable for _IOServiceStateNotification in IOService.cpo
       vtable for IOServiceCompatibility in IOService.cpo
       vtable for IOPMPowerSource in IOPMPowerSource.cpo
       ...
@@ -43,6 +41,8 @@
       _bsd_autoconf in bsd_init.o
   "_native_legacy_display_probe", referenced from:
       _bsd_init in bsd_init.o
+      _native_mobile_graphics_client_probe in IOUserClient.cpo
+  "_native_mobile_display_provider_probe", referenced from:
       _native_mobile_graphics_client_probe in IOUserClient.cpo
 ld: symbol(s) not found for architecture arm64
 clang: error: linker command failed with exit code 1 (use -v to see invocation)
