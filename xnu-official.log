@@ -1,0 +1,706 @@
+﻿2026-10-22T10:16:24.1269880Z Current runner version: '2.338.0'
+2026-10-22T10:16:24.1289910Z ##[group]Runner Image Provisioner
+2026-10-22T10:16:24.1290450Z Hosted Compute Agent
+2026-10-22T10:16:24.1290810Z Version: 20260828.587
+2026-10-22T10:16:24.1291200Z Commit: abac92662cab4cc7352de4f9f9d2e2419aad9c29
+2026-10-22T10:16:24.1291660Z Build Date: 2026-08-28T16:44:25Z
+2026-10-22T10:16:24.1292090Z Worker ID: {1b755829-1799-4a4e-b916-a97d92c6feed}
+2026-10-22T10:16:24.1292530Z Azure Region: westus
+2026-10-22T10:16:24.1292890Z ##[endgroup]
+2026-10-22T10:16:24.1293710Z ##[group]Operating System
+2026-10-22T10:16:24.1294090Z macOS
+2026-10-22T10:16:24.1294400Z 14.8.9
+2026-10-22T10:16:24.1294710Z 23J631
+2026-10-22T10:16:24.1295050Z ##[endgroup]
+2026-10-22T10:16:24.1295410Z ##[group]Runner Image
+2026-10-22T10:16:24.1295790Z Image: macos-14-arm64
+2026-10-22T10:16:24.1296160Z Version: 20260831.0302.1
+2026-10-22T10:16:24.1296980Z Included Software: https://github.com/actions/runner-images/blob/macos-14-arm64/20260831.0302/images/macos/macos-14-arm64-Readme.md
+2026-10-22T10:16:24.1298030Z Image Release: https://github.com/actions/runner-images/releases/tag/macos-14-arm64%2F20260831.0302
+2026-10-22T10:16:24.1298680Z ##[endgroup]
+2026-10-22T10:16:24.1299410Z ##[group]GITHUB_TOKEN Permissions
+2026-10-22T10:16:24.1300580Z Contents: write
+2026-10-22T10:16:24.1300950Z Metadata: read
+2026-10-22T10:16:24.1301310Z ##[endgroup]
+2026-10-22T10:16:24.1302620Z Secret source: Actions
+2026-10-22T10:16:24.1303160Z Cache mode: write
+2026-10-22T10:16:24.1303600Z Prepare workflow directory
+2026-10-22T10:16:24.1829380Z Prepare all required actions
+2026-10-22T10:16:24.1890610Z Getting action download info
+2026-10-22T10:16:24.6497670Z Download action repository 'actions/checkout@v4' (SHA:11d5960a326750d5838078e36cf38b85af677262)
+2026-10-22T10:16:24.9098110Z Download action repository 'actions/upload-artifact@v4' (SHA:ea165f8d65b6e75b540449e92b4886f43607fa02)
+2026-10-22T10:16:25.1201670Z Complete job name: kernel
+2026-10-22T10:16:25.1780440Z ##[group]Run actions/checkout@v4
+2026-10-22T10:16:25.1781390Z with:
+2026-10-22T10:16:25.1781780Z   path: port
+2026-10-22T10:16:25.1782260Z   repository: peiyuesheng666/UniXNU-PHY120
+2026-10-22T10:16:25.1785710Z   token: ***
+2026-10-22T10:16:25.1786110Z   ssh-strict: true
+2026-10-22T10:16:25.1786600Z   ssh-user: git
+2026-10-22T10:16:25.1787250Z   persist-credentials: true
+2026-10-22T10:16:25.1787730Z   clean: true
+2026-10-22T10:16:25.1788110Z   sparse-checkout-cone-mode: true
+2026-10-22T10:16:25.1788790Z   fetch-depth: 1
+2026-10-22T10:16:25.1789630Z   fetch-tags: false
+2026-10-22T10:16:25.1790050Z   show-progress: true
+2026-10-22T10:16:25.1790430Z   lfs: false
+2026-10-22T10:16:25.1790780Z   submodules: false
+2026-10-22T10:16:25.1791190Z   set-safe-directory: true
+2026-10-22T10:16:25.1791920Z   allow-unsafe-pr-checkout: false
+2026-10-22T10:16:25.1792610Z env:
+2026-10-22T10:16:25.1792990Z   REPORT: ci/last-run.md
+2026-10-22T10:16:25.1793390Z ##[endgroup]
+2026-10-22T10:16:25.3111760Z Syncing repository: peiyuesheng666/UniXNU-PHY120
+2026-10-22T10:16:25.3114380Z ##[group]Getting Git version info
+2026-10-22T10:16:25.3115360Z Working directory is '/Users/runner/work/UniXNU-PHY120/UniXNU-PHY120/port'
+2026-10-22T10:16:25.3117460Z [command]/opt/homebrew/bin/git version
+2026-10-22T10:16:25.3338260Z git version 2.55.0
+2026-10-22T10:16:25.3351130Z ##[endgroup]
+2026-10-22T10:16:25.3356340Z Copying '/Users/runner/.gitconfig' to '/Users/runner/work/_temp/4dc42533-49a7-457e-b522-936d60e403f6/.gitconfig'
+2026-10-22T10:16:25.3364930Z Temporarily overriding HOME='/Users/runner/work/_temp/4dc42533-49a7-457e-b522-936d60e403f6' before making global git config changes
+2026-10-22T10:16:25.3366140Z Adding repository directory to the temporary git global config as a safe directory
+2026-10-22T10:16:25.3368600Z [command]/opt/homebrew/bin/git config --global --add safe.directory /Users/runner/work/UniXNU-PHY120/UniXNU-PHY120/port
+2026-10-22T10:16:25.3466980Z ##[group]Initializing the repository
+2026-10-22T10:16:25.3468140Z [command]/opt/homebrew/bin/git init /Users/runner/work/UniXNU-PHY120/UniXNU-PHY120/port
+2026-10-22T10:16:25.3669480Z hint: Using 'master' as the name for the initial branch. This default branch name
+2026-10-22T10:16:25.3670630Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+2026-10-22T10:16:25.3672050Z hint: to use in all of your new repositories, which will suppress this warning,
+2026-10-22T10:16:25.3672660Z hint: call:
+2026-10-22T10:16:25.3673010Z hint:
+2026-10-22T10:16:25.3673620Z hint: 	git config --global init.defaultBranch <name>
+2026-10-22T10:16:25.3674180Z hint:
+2026-10-22T10:16:25.3674620Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+2026-10-22T10:16:25.3675340Z hint: 'development'. The just-created branch can be renamed via this command:
+2026-10-22T10:16:25.3675950Z hint:
+2026-10-22T10:16:25.3676290Z hint: 	git branch -m <name>
+2026-10-22T10:16:25.3676660Z hint:
+2026-10-22T10:16:25.3677180Z hint: Disable this message with "git config set advice.defaultBranchName false"
+2026-10-22T10:16:25.3678080Z Initialized empty Git repository in /Users/runner/work/UniXNU-PHY120/UniXNU-PHY120/port/.git/
+2026-10-22T10:16:25.3682130Z [command]/opt/homebrew/bin/git remote add origin https://github.com/peiyuesheng666/UniXNU-PHY120
+2026-10-22T10:16:25.3744200Z ##[endgroup]
+2026-10-22T10:16:25.3744870Z ##[group]Disabling automatic garbage collection
+2026-10-22T10:16:25.3746840Z [command]/opt/homebrew/bin/git config --local gc.auto 0
+2026-10-22T10:16:25.3795350Z ##[endgroup]
+2026-10-22T10:16:25.3796060Z ##[group]Setting up auth
+2026-10-22T10:16:25.3801610Z [command]/opt/homebrew/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-10-22T10:16:25.3849390Z [command]/opt/homebrew/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-10-22T10:16:25.4549500Z [command]/opt/homebrew/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-10-22T10:16:25.4597420Z [command]/opt/homebrew/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-10-22T10:16:25.5155700Z [command]/opt/homebrew/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-10-22T10:16:25.5202290Z [command]/opt/homebrew/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-10-22T10:16:25.6101570Z [command]/opt/homebrew/bin/git config --local http.https://github.com/.extraheader AUTHORIZATION: basic ***
+2026-10-22T10:16:25.6177270Z ##[endgroup]
+2026-10-22T10:16:25.6181500Z ##[group]Fetching the repository
+2026-10-22T10:16:25.6184420Z [command]/opt/homebrew/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +0473db7ce5285085f1ed01c52732449b9916b289:refs/remotes/origin/main
+2026-10-22T10:16:26.0385830Z From https://github.com/peiyuesheng666/UniXNU-PHY120
+2026-10-22T10:16:26.0387090Z  * [new ref]         0473db7ce5285085f1ed01c52732449b9916b289 -> origin/main
+2026-10-22T10:16:26.0389870Z ##[endgroup]
+2026-10-22T10:16:26.0390900Z ##[group]Determining the checkout info
+2026-10-22T10:16:26.0394390Z ##[endgroup]
+2026-10-22T10:16:26.0403340Z [command]/opt/homebrew/bin/git sparse-checkout disable
+2026-10-22T10:16:26.0489950Z [command]/opt/homebrew/bin/git config --local --unset-all extensions.worktreeConfig
+2026-10-22T10:16:26.0543210Z ##[group]Checking out the ref
+2026-10-22T10:16:26.0545750Z [command]/opt/homebrew/bin/git checkout --progress --force -B main refs/remotes/origin/main
+2026-10-22T10:16:26.0721900Z Switched to a new branch 'main'
+2026-10-22T10:16:26.0726560Z branch 'main' set up to track 'origin/main'.
+2026-10-22T10:16:26.0733800Z ##[endgroup]
+2026-10-22T10:16:26.0853690Z [command]/opt/homebrew/bin/git log -1 --format=%H
+2026-10-22T10:16:26.0891400Z 0473db7ce5285085f1ed01c52732449b9916b289
+2026-10-22T10:16:26.1245900Z ##[group]Run actions/checkout@v4
+2026-10-22T10:16:26.1246540Z with:
+2026-10-22T10:16:26.1246980Z   repository: UniXNU/UniXNU
+2026-10-22T10:16:26.1247460Z   path: UniXNU
+2026-10-22T10:16:26.1254640Z   token: ***
+2026-10-22T10:16:26.1255120Z   ssh-strict: true
+2026-10-22T10:16:26.1255540Z   ssh-user: git
+2026-10-22T10:16:26.1256030Z   persist-credentials: true
+2026-10-22T10:16:26.1256550Z   clean: true
+2026-10-22T10:16:26.1257230Z   sparse-checkout-cone-mode: true
+2026-10-22T10:16:26.1257910Z   fetch-depth: 1
+2026-10-22T10:16:26.1258720Z   fetch-tags: false
+2026-10-22T10:16:26.1259200Z   show-progress: true
+2026-10-22T10:16:26.1259700Z   lfs: false
+2026-10-22T10:16:26.1260080Z   submodules: false
+2026-10-22T10:16:26.1260590Z   set-safe-directory: true
+2026-10-22T10:16:26.1261140Z   allow-unsafe-pr-checkout: false
+2026-10-22T10:16:26.1261730Z env:
+2026-10-22T10:16:26.1262170Z   REPORT: ci/last-run.md
+2026-10-22T10:16:26.1262640Z ##[endgroup]
+2026-10-22T10:16:26.2751390Z Syncing repository: UniXNU/UniXNU
+2026-10-22T10:16:26.2761500Z ##[group]Getting Git version info
+2026-10-22T10:16:26.2763280Z Working directory is '/Users/runner/work/UniXNU-PHY120/UniXNU-PHY120/UniXNU'
+2026-10-22T10:16:26.2853950Z [command]/opt/homebrew/bin/git version
+2026-10-22T10:16:26.2973240Z git version 2.55.0
+2026-10-22T10:16:26.2988440Z ##[endgroup]
+2026-10-22T10:16:26.2997060Z Copying '/Users/runner/.gitconfig' to '/Users/runner/work/_temp/ab1ae13b-a1a5-486b-8e0d-57bb310c0046/.gitconfig'
+2026-10-22T10:16:26.3010990Z Temporarily overriding HOME='/Users/runner/work/_temp/ab1ae13b-a1a5-486b-8e0d-57bb310c0046' before making global git config changes
+2026-10-22T10:16:26.3014220Z Adding repository directory to the temporary git global config as a safe directory
+2026-10-22T10:16:26.3017030Z [command]/opt/homebrew/bin/git config --global --add safe.directory /Users/runner/work/UniXNU-PHY120/UniXNU-PHY120/UniXNU
+2026-10-22T10:16:26.3090880Z ##[group]Initializing the repository
+2026-10-22T10:16:26.3094300Z [command]/opt/homebrew/bin/git init /Users/runner/work/UniXNU-PHY120/UniXNU-PHY120/UniXNU
+2026-10-22T10:16:26.3200500Z hint: Using 'master' as the name for the initial branch. This default branch name
+2026-10-22T10:16:26.3202540Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+2026-10-22T10:16:26.3203750Z hint: to use in all of your new repositories, which will suppress this warning,
+2026-10-22T10:16:26.3204660Z hint: call:
+2026-10-22T10:16:26.3205020Z hint:
+2026-10-22T10:16:26.3205500Z hint: 	git config --global init.defaultBranch <name>
+2026-10-22T10:16:26.3206120Z hint:
+2026-10-22T10:16:26.3206720Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+2026-10-22T10:16:26.3207840Z hint: 'development'. The just-created branch can be renamed via this command:
+2026-10-22T10:16:26.3208800Z hint:
+2026-10-22T10:16:26.3209250Z hint: 	git branch -m <name>
+2026-10-22T10:16:26.3209770Z hint:
+2026-10-22T10:16:26.3210680Z hint: Disable this message with "git config set advice.defaultBranchName false"
+2026-10-22T10:16:26.3212030Z Initialized empty Git repository in /Users/runner/work/UniXNU-PHY120/UniXNU-PHY120/UniXNU/.git/
+2026-10-22T10:16:26.3214620Z [command]/opt/homebrew/bin/git remote add origin https://github.com/UniXNU/UniXNU
+2026-10-22T10:16:26.3274820Z ##[endgroup]
+2026-10-22T10:16:26.3276160Z ##[group]Disabling automatic garbage collection
+2026-10-22T10:16:26.3277060Z [command]/opt/homebrew/bin/git config --local gc.auto 0
+2026-10-22T10:16:26.3329220Z ##[endgroup]
+2026-10-22T10:16:26.3330030Z ##[group]Setting up auth
+2026-10-22T10:16:26.3333620Z [command]/opt/homebrew/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-10-22T10:16:26.3404890Z [command]/opt/homebrew/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-10-22T10:16:26.4272700Z [command]/opt/homebrew/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-10-22T10:16:26.4329830Z [command]/opt/homebrew/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-10-22T10:16:26.5011140Z [command]/opt/homebrew/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-10-22T10:16:26.5065230Z [command]/opt/homebrew/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-10-22T10:16:26.5870160Z [command]/opt/homebrew/bin/git config --local http.https://github.com/.extraheader AUTHORIZATION: basic ***
+2026-10-22T10:16:26.5952810Z ##[endgroup]
+2026-10-22T10:16:26.5955770Z ##[group]Determining the default branch
+2026-10-22T10:16:26.5957110Z Retrieving the default branch name
+2026-10-22T10:16:26.9462350Z Default branch 'main'
+2026-10-22T10:16:26.9467520Z ##[endgroup]
+2026-10-22T10:16:26.9469320Z ##[group]Fetching the repository
+2026-10-22T10:16:26.9481590Z [command]/opt/homebrew/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +refs/heads/main:refs/remotes/origin/main
+2026-10-22T10:16:27.5104350Z From https://github.com/UniXNU/UniXNU
+2026-10-22T10:16:27.5105220Z  * [new branch]      main       -> origin/main
+2026-10-22T10:16:27.5108230Z ##[endgroup]
+2026-10-22T10:16:27.5109180Z ##[group]Determining the checkout info
+2026-10-22T10:16:27.5111560Z ##[endgroup]
+2026-10-22T10:16:27.5119270Z [command]/opt/homebrew/bin/git sparse-checkout disable
+2026-10-22T10:16:27.5194420Z [command]/opt/homebrew/bin/git config --local --unset-all extensions.worktreeConfig
+2026-10-22T10:16:27.5273930Z ##[group]Checking out the ref
+2026-10-22T10:16:27.5275670Z [command]/opt/homebrew/bin/git checkout --progress --force -B main refs/remotes/origin/main
+2026-10-22T10:16:27.5967310Z Switched to a new branch 'main'
+2026-10-22T10:16:27.5971450Z branch 'main' set up to track 'origin/main'.
+2026-10-22T10:16:27.5977850Z ##[endgroup]
+2026-10-22T10:16:27.6049170Z [command]/opt/homebrew/bin/git log -1 --format=%H
+2026-10-22T10:16:27.6102430Z 24f729b209fce73ddb2e190827f18a05144c5ae8
+2026-10-22T10:16:27.6210350Z ##[group]Run brew install cmake ninja unifdef llvm mtools dtc || true
+2026-10-22T10:16:27.6210920Z [36;1mbrew install cmake ninja unifdef llvm mtools dtc || true[0m
+2026-10-22T10:16:27.6211270Z [36;1mxcodebuild -version[0m
+2026-10-22T10:16:27.6211630Z [36;1mxcrun --sdk iphoneos --show-sdk-version[0m
+2026-10-22T10:16:27.6211980Z [36;1mpython3 --version[0m
+2026-10-22T10:16:27.6352350Z shell: /bin/bash -e {0}
+2026-10-22T10:16:27.6352690Z env:
+2026-10-22T10:16:27.6352980Z   REPORT: ci/last-run.md
+2026-10-22T10:16:27.6353270Z ##[endgroup]
+2026-10-22T10:16:29.4613180Z [33mWarning:[0m cmake 4.4.3 is already installed and up-to-date.
+2026-10-22T10:16:29.4621880Z To reinstall 4.4.3, run:
+2026-10-22T10:16:29.4622370Z   brew reinstall cmake
+2026-10-22T10:16:29.4634990Z [33mWarning:[0m ninja 1.13.2 is already installed and up-to-date.
+2026-10-22T10:16:29.4635540Z To reinstall 1.13.2, run:
+2026-10-22T10:16:29.4635920Z   brew reinstall ninja
+2026-10-22T10:16:30.3112470Z [32m==>[0m [1mDownloading bottle manifests[0m
+2026-10-22T10:16:30.3227890Z ✔︎ Bottle Manifest unifdef (2.12)
+2026-10-22T10:16:30.3228200Z ✔︎ Bottle Manifest llvm (23.1.0)
+2026-10-22T10:16:30.3228450Z ✔︎ Bottle Manifest mtools (4.0.49)
+2026-10-22T10:16:30.3228690Z ✔︎ Bottle Manifest dtc (1.8.1)
+2026-10-22T10:16:30.3229790Z [34m==>[0m [1mWould install 4 formulae:[0m
+2026-10-22T10:16:30.3230180Z unifdef llvm mtools dtc
+2026-10-22T10:16:30.3926270Z [34m==>[0m [1mWould install 1 dependency for llvm:[0m
+2026-10-22T10:16:30.3926800Z z3
+2026-10-22T10:16:30.4571430Z [32m==>[0m [1mFetching downloads for: [32munifdef[39m, [32mllvm[39m, [32mmtools[39m and [32mdtc[39m[0m
+2026-10-22T10:16:30.6516220Z ✔︎ Bottle Manifest z3 (5.1.0)
+2026-10-22T10:16:30.7195720Z ✔︎ Bottle unifdef (2.12)
+2026-10-22T10:16:30.7532050Z ✔︎ Bottle dtc (1.8.1)
+2026-10-22T10:16:30.7679610Z ✔︎ Bottle mtools (4.0.49)
+2026-10-22T10:16:31.1108460Z ✔︎ Bottle z3 (5.1.0)
+2026-10-22T10:16:46.9904120Z ✔︎ Bottle llvm (23.1.0)
+2026-10-22T10:16:46.9976310Z [34m==>[0m [1mPouring unifdef--2.12.arm64_sonoma.bottle.tar.gz[0m
+2026-10-22T10:16:47.2101210Z 🍺  /opt/homebrew/Cellar/unifdef/2.12: 9 files, 282.8KB
+2026-10-22T10:16:47.2535480Z [32m==>[0m [1mInstalling llvm dependency: [32mz3[39m[0m
+2026-10-22T10:16:47.2626930Z [34m==>[0m [1mPouring z3--5.1.0.arm64_sonoma.bottle.tar.gz[0m
+2026-10-22T10:16:47.7322290Z 🍺  /opt/homebrew/Cellar/z3/5.1.0: 122 files, 35.3MB
+2026-10-22T10:16:47.7436780Z [32m==>[0m [1mInstalling [32mllvm[39m[0m
+2026-10-22T10:16:47.7438220Z [34m==>[0m [1mPouring llvm--23.1.0.arm64_sonoma.bottle.tar.gz[0m
+2026-10-22T10:17:03.6246130Z 🍺  /opt/homebrew/Cellar/llvm/23.1.0: 9,390 files, 1.9GB
+2026-10-22T10:17:03.6363640Z [34m==>[0m [1mPouring mtools--4.0.49.arm64_sonoma.bottle.tar.gz[0m
+2026-10-22T10:17:03.7525230Z 🍺  /opt/homebrew/Cellar/mtools/4.0.49: 69 files, 596.4KB
+2026-10-22T10:17:03.7804210Z [34m==>[0m [1mPouring dtc--1.8.1.arm64_sonoma.bottle.tar.gz[0m
+2026-10-22T10:17:03.8295790Z 🍺  /opt/homebrew/Cellar/dtc/1.8.1: 19 files, 582.9KB
+2026-10-22T10:17:03.8298830Z [32m==>[0m [1mCaveats[0m
+2026-10-22T10:17:03.8299740Z [34m==>[0m [1munifdef[0m
+2026-10-22T10:17:03.8300820Z unifdef is keg-only, which means it was not symlinked into /opt/homebrew,
+2026-10-22T10:17:03.8302320Z because macOS already provides this software and installing another version in
+2026-10-22T10:17:03.8307640Z parallel can cause all kinds of trouble.
+2026-10-22T10:17:03.8308590Z 
+2026-10-22T10:17:03.8309840Z If you need to have unifdef first in your PATH, run:
+2026-10-22T10:17:03.8311460Z   echo 'export PATH="/opt/homebrew/opt/unifdef/bin:$PATH"' >> /Users/runner/.bash_profile
+2026-10-22T10:17:03.8313480Z [34m==>[0m [1mllvm[0m
+2026-10-22T10:17:03.8314640Z CLANG_CONFIG_FILE_SYSTEM_DIR: /opt/homebrew/etc/clang
+2026-10-22T10:17:03.8315740Z CLANG_CONFIG_FILE_USER_DIR:   ~/.config/clang
+2026-10-22T10:17:03.8316440Z 
+2026-10-22T10:17:03.8316890Z LLD and LLDB are now provided in separate formulae:
+2026-10-22T10:17:03.8319980Z   brew install lld
+2026-10-22T10:17:03.8320660Z   brew install lldb
+2026-10-22T10:17:03.8321060Z 
+2026-10-22T10:17:03.8321640Z Z3 solver support will be removed in LLVM 24 as it is unsupported upstream,
+2026-10-22T10:17:03.8323100Z see https://github.com/llvm/llvm-project/pull/205370
+2026-10-22T10:17:03.8324220Z 
+2026-10-22T10:17:03.8325410Z Using `clang`, `clang++`, etc., requires a CLT installation at `/Library/Developer/CommandLineTools`.
+2026-10-22T10:17:03.8327080Z If you don't want to install the CLT, you can write appropriate configuration files pointing to your
+2026-10-22T10:17:03.8328470Z SDK at ~/.config/clang.
+2026-10-22T10:17:03.8329050Z 
+2026-10-22T10:17:03.8329550Z To use the bundled libunwind please use the following LDFLAGS:
+2026-10-22T10:17:03.8330620Z   LDFLAGS="-L/opt/homebrew/opt/llvm/lib/unwind -lunwind"
+2026-10-22T10:17:03.8331300Z 
+2026-10-22T10:17:03.8331760Z To use the bundled libc++ please use the following LDFLAGS:
+2026-10-22T10:17:03.8332970Z   LDFLAGS="-L/opt/homebrew/opt/llvm/lib/c++ -L/opt/homebrew/opt/llvm/lib/unwind -lunwind"
+2026-10-22T10:17:03.8334650Z Features newer than system libc++ will require the following define to enable
+2026-10-22T10:17:03.8335870Z (support for this may be removed in a future major LLVM release):
+2026-10-22T10:17:03.8336940Z   CPPFLAGS="-D_LIBCPP_DISABLE_AVAILABILITY"
+2026-10-22T10:17:03.8337740Z 
+2026-10-22T10:17:03.8338860Z NOTE: You probably want to use the libunwind and libc++ provided by macOS unless you know what you're doing.
+2026-10-22T10:17:03.8339260Z 
+2026-10-22T10:17:03.8339640Z llvm is keg-only, which means it was not symlinked into /opt/homebrew,
+2026-10-22T10:17:03.8340210Z because macOS already provides this software and installing another version in
+2026-10-22T10:17:03.8340650Z parallel can cause all kinds of trouble.
+2026-10-22T10:17:03.8340890Z 
+2026-10-22T10:17:03.8341050Z If you need to have llvm first in your PATH, run:
+2026-10-22T10:17:03.8342630Z   echo 'export PATH="/opt/homebrew/opt/llvm/bin:$PATH"' >> /Users/runner/.bash_profile
+2026-10-22T10:17:03.8343020Z 
+2026-10-22T10:17:03.8343200Z For compilers to find llvm you may need to set:
+2026-10-22T10:17:03.8343580Z   export LDFLAGS="-L/opt/homebrew/opt/llvm/lib"
+2026-10-22T10:17:03.8344020Z   export CPPFLAGS="-I/opt/homebrew/opt/llvm/include"
+2026-10-22T10:17:03.8344290Z 
+2026-10-22T10:17:03.8344480Z For cmake to find llvm you may need to set:
+2026-10-22T10:17:03.8344840Z   export CMAKE_PREFIX_PATH="/opt/homebrew/opt/llvm"
+2026-10-22T10:17:04.1590040Z Xcode 15.4
+2026-10-22T10:17:04.1599330Z Build version 15F31d
+2026-10-22T10:17:06.3582320Z 17.5
+2026-10-22T10:17:06.4590660Z Python 3.14.7
+2026-10-22T10:17:06.4737670Z ##[group]Run ./unixnu defconfig PHY120_defconfig -D ../port
+2026-10-22T10:17:06.4739300Z [36;1m./unixnu defconfig PHY120_defconfig -D ../port[0m
+2026-10-22T10:17:06.4739680Z [36;1m./unixnu status || true[0m
+2026-10-22T10:17:06.4965310Z shell: /bin/bash -e {0}
+2026-10-22T10:17:06.4965720Z env:
+2026-10-22T10:17:06.4966520Z   REPORT: ci/last-run.md
+2026-10-22T10:17:06.4967270Z ##[endgroup]
+2026-10-22T10:17:07.0179640Z == configuration PHY120_defconfig -> /Users/runner/work/UniXNU-PHY120/UniXNU-PHY120/UniXNU/out/PHY120/.config
+2026-10-22T10:17:07.1182670Z device   /Users/runner/work/UniXNU-PHY120/UniXNU-PHY120/port (PHY120)
+2026-10-22T10:17:07.1183310Z output   /Users/runner/work/UniXNU-PHY120/UniXNU-PHY120/UniXNU/out/PHY120
+2026-10-22T10:17:07.1183860Z config   /Users/runner/work/UniXNU-PHY120/UniXNU-PHY120/UniXNU/out/PHY120/.config
+2026-10-22T10:17:07.1184410Z driver   ArmCpu                   base
+2026-10-22T10:17:07.1184790Z driver   ArmDTPlatform            base
+2026-10-22T10:17:07.1185630Z driver   ArmVirtPlatform          base
+2026-10-22T10:17:07.1186040Z driver   DarwinBoot               base
+2026-10-22T10:17:07.1186730Z driver   NativeAES                base
+2026-10-22T10:17:07.1187300Z driver   NativeAdreno             base
+2026-10-22T10:17:07.1187690Z driver   NativeGeniSpi            base
+2026-10-22T10:17:07.1189510Z driver   NativeHidInput           base
+2026-10-22T10:17:07.1189890Z driver   NativeKeyStoreEvents     base
+2026-10-22T10:17:07.1190480Z driver   NativeMetal              base
+2026-10-22T10:17:07.1190860Z driver   NativeMobileDisplay      base
+2026-10-22T10:17:07.1191310Z driver   NativeRamBlock           base
+2026-10-22T10:17:07.1191650Z driver   NativeUfs                base
+2026-10-22T10:17:07.1192040Z driver   NativeVirtioBlock        base
+2026-10-22T10:17:07.1192570Z driver   NativeVirtioConsole      base
+2026-10-22T10:17:07.1192910Z kit      AdrenoFirmware           base
+2026-10-22T10:17:07.1193420Z kit      AdrenoPM4                base
+2026-10-22T10:17:07.1193700Z kit      AirNir                   base
+2026-10-22T10:17:07.1194240Z kit      ArmSmmu4K                base
+2026-10-22T10:17:07.1194520Z kit      NativePrelink            base
+2026-10-22T10:17:07.1195070Z kit      VerifiedRoot             base
+2026-10-22T10:17:07.1195700Z package  device                   device
+2026-10-22T10:17:07.1196210Z package  main                     base
+2026-10-22T10:17:07.1196650Z patch    libpthread               base
+2026-10-22T10:17:07.1197120Z patch    mesa                     base
+2026-10-22T10:17:07.1197540Z patch    xnu                      base
+2026-10-22T10:17:07.1197930Z refer    AvailabilityVersions     git pinned 933f9360f1b7
+2026-10-22T10:17:07.1198490Z refer    IOStorageFamily          git pinned e45fbe30a787
+2026-10-22T10:17:07.1199150Z refer    corecrypto-2023          git pinned 11fba65b12d8
+2026-10-22T10:17:07.1199630Z refer    edk2                     git pinned cfb93724a06f
+2026-10-22T10:17:07.1199990Z refer    libdispatch              git pinned 30fe6a7d9453
+2026-10-22T10:17:07.1200520Z refer    libplatform              git pinned a00a4cc36da2
+2026-10-22T10:17:07.1200890Z refer    libpthread               git pinned c0e60fb5ecfc
+2026-10-22T10:17:07.1202090Z refer    xnu                      git pinned d8b80295118e
+2026-10-22T10:17:07.1393750Z ##[group]Run ./unixnu fetch
+2026-10-22T10:17:07.1394120Z [36;1m./unixnu fetch[0m
+2026-10-22T10:17:07.1457450Z shell: /bin/bash -e {0}
+2026-10-22T10:17:07.1457740Z env:
+2026-10-22T10:17:07.1458130Z   REPORT: ci/last-run.md
+2026-10-22T10:17:07.1458420Z ##[endgroup]
+2026-10-22T10:17:07.2763480Z == submodules /Users/runner/work/UniXNU-PHY120/UniXNU-PHY120/UniXNU
+2026-10-22T10:17:18.4256920Z == fetch https://github.com/apple-oss-distributions/xnu.git d8b80295118e
+2026-10-22T10:17:18.4643510Z + git -C /Users/runner/work/UniXNU-PHY120/UniXNU-PHY120/UniXNU/out/feeds/xnu-0b4b910d fetch -q --depth 1 origin d8b80295118ef25ac3a784134bcf95cd8e88109f
+2026-10-22T10:17:22.4843880Z == fetch https://github.com/apple-oss-distributions/libplatform.git a00a4cc36da2
+2026-10-22T10:17:22.5161880Z + git -C /Users/runner/work/UniXNU-PHY120/UniXNU-PHY120/UniXNU/out/feeds/libplatform-08d11127 fetch -q --depth 1 origin a00a4cc36da2110578bcf3b8eeeeb93dcc7f4e11
+2026-10-22T10:17:23.3489100Z == fetch https://github.com/apple-oss-distributions/libdispatch.git 30fe6a7d9453
+2026-10-22T10:17:23.3781690Z + git -C /Users/runner/work/UniXNU-PHY120/UniXNU-PHY120/UniXNU/out/feeds/libdispatch-50d3508d fetch -q --depth 1 origin 30fe6a7d945340ce69cef121132f049e810089a5
+2026-10-22T10:17:23.9850120Z == fetch https://github.com/apple-oss-distributions/AvailabilityVersions.git 933f9360f1b7
+2026-10-22T10:17:24.0161260Z + git -C /Users/runner/work/UniXNU-PHY120/UniXNU-PHY120/UniXNU/out/feeds/AvailabilityVersions-1c8ff76f fetch -q --depth 1 origin 933f9360f1b70dfbda5548386a3d65e0358b4f7d
+2026-10-22T10:17:24.4447210Z == fetch https://github.com/microsoft/mu_basecore.git cfb93724a06f
+2026-10-22T10:17:24.4794540Z + git -C /Users/runner/work/UniXNU-PHY120/UniXNU-PHY120/UniXNU/out/feeds/mu_basecore-89034cbb fetch -q --depth 1 origin cfb93724a06ff86ff5ba971413368a7809ee42a5
+2026-10-22T10:17:30.1065110Z + git -C /Users/runner/work/UniXNU-PHY120/UniXNU-PHY120/UniXNU/out/feeds/mu_basecore-89034cbb submodule update --init --depth 1 -- MdePkg/Library/BaseFdtLib/libfdt MdePkg/Library/MipiSysTLib/mipisyst BaseTools/Source/C/BrotliCompress/brotli MdeModulePkg/Library/BrotliCustomDecompressLib/brotli SecurityPkg/DeviceSecurity/SpdmLib/libspdm
+2026-10-22T10:17:30.2069990Z Submodule 'BaseTools/Source/C/BrotliCompress/brotli' (https://github.com/google/brotli) registered for path 'BaseTools/Source/C/BrotliCompress/brotli'
+2026-10-22T10:17:30.2074530Z Submodule 'MdeModulePkg/Library/BrotliCustomDecompressLib/brotli' (https://github.com/google/brotli) registered for path 'MdeModulePkg/Library/BrotliCustomDecompressLib/brotli'
+2026-10-22T10:17:30.2085720Z Submodule 'MdePkg/Library/BaseFdtLib/libfdt' (https://github.com/devicetree-org/pylibfdt.git) registered for path 'MdePkg/Library/BaseFdtLib/libfdt'
+2026-10-22T10:17:30.2093080Z Submodule 'MdePkg/Library/MipiSysTLib/mipisyst' (https://github.com/MIPI-Alliance/public-mipi-sys-t.git) registered for path 'MdePkg/Library/MipiSysTLib/mipisyst'
+2026-10-22T10:17:30.2102470Z Submodule 'SecurityPkg/DeviceSecurity/SpdmLib/libspdm' (https://github.com/DMTF/libspdm.git) registered for path 'SecurityPkg/DeviceSecurity/SpdmLib/libspdm'
+2026-10-22T10:17:30.2247750Z Cloning into '/Users/runner/work/UniXNU-PHY120/UniXNU-PHY120/UniXNU/out/feeds/mu_basecore-89034cbb/BaseTools/Source/C/BrotliCompress/brotli'...
+2026-10-22T10:17:31.2212250Z Cloning into '/Users/runner/work/UniXNU-PHY120/UniXNU-PHY120/UniXNU/out/feeds/mu_basecore-89034cbb/MdeModulePkg/Library/BrotliCustomDecompressLib/brotli'...
+2026-10-22T10:17:32.6479530Z Cloning into '/Users/runner/work/UniXNU-PHY120/UniXNU-PHY120/UniXNU/out/feeds/mu_basecore-89034cbb/MdePkg/Library/BaseFdtLib/libfdt'...
+2026-10-22T10:17:33.1279840Z Cloning into '/Users/runner/work/UniXNU-PHY120/UniXNU-PHY120/UniXNU/out/feeds/mu_basecore-89034cbb/MdePkg/Library/MipiSysTLib/mipisyst'...
+2026-10-22T10:17:33.6097230Z Cloning into '/Users/runner/work/UniXNU-PHY120/UniXNU-PHY120/UniXNU/out/feeds/mu_basecore-89034cbb/SecurityPkg/DeviceSecurity/SpdmLib/libspdm'...
+2026-10-22T10:17:37.2619110Z From https://github.com/google/brotli
+2026-10-22T10:17:37.2621740Z  * branch            e230f474b87134e8c6c85b630084c612057f253e -> FETCH_HEAD
+2026-10-22T10:17:37.5089360Z Submodule path 'BaseTools/Source/C/BrotliCompress/brotli': checked out 'e230f474b87134e8c6c85b630084c612057f253e'
+2026-10-22T10:17:38.6353610Z From https://github.com/google/brotli
+2026-10-22T10:17:38.6355780Z  * branch            e230f474b87134e8c6c85b630084c612057f253e -> FETCH_HEAD
+2026-10-22T10:17:38.8923060Z Submodule path 'MdeModulePkg/Library/BrotliCustomDecompressLib/brotli': checked out 'e230f474b87134e8c6c85b630084c612057f253e'
+2026-10-22T10:17:39.8847900Z From https://github.com/devicetree-org/pylibfdt
+2026-10-22T10:17:39.8848750Z  * branch            cfff805481bdea27f900c32698171286542b8d3c -> FETCH_HEAD
+2026-10-22T10:17:39.9112530Z Submodule path 'MdePkg/Library/BaseFdtLib/libfdt': checked out 'cfff805481bdea27f900c32698171286542b8d3c'
+2026-10-22T10:17:40.9631230Z From https://github.com/MIPI-Alliance/public-mipi-sys-t
+2026-10-22T10:17:40.9632270Z  * branch            370b5944c046bab043dd8b133727b2135af7747a -> FETCH_HEAD
+2026-10-22T10:17:41.0167470Z Submodule path 'MdePkg/Library/MipiSysTLib/mipisyst': checked out '370b5944c046bab043dd8b133727b2135af7747a'
+2026-10-22T10:17:42.4802650Z From https://github.com/DMTF/libspdm
+2026-10-22T10:17:42.4803540Z  * branch            f55cf6d48ec69b4ac60a63903e9c6a2cb0fd155d -> FETCH_HEAD
+2026-10-22T10:17:42.8585550Z Submodule path 'SecurityPkg/DeviceSecurity/SpdmLib/libspdm': checked out 'f55cf6d48ec69b4ac60a63903e9c6a2cb0fd155d'
+2026-10-22T10:17:42.8774210Z == fetch https://github.com/apple-oss-distributions/libpthread.git c0e60fb5ecfc
+2026-10-22T10:17:42.9148440Z + git -C /Users/runner/work/UniXNU-PHY120/UniXNU-PHY120/UniXNU/out/feeds/libpthread-67dc7894 fetch -q --depth 1 origin c0e60fb5ecfc54cf379c261d3f9572cc22ded891
+2026-10-22T10:17:43.4445920Z == fetch https://github.com/ONLYA/corecrypto-2023.git 11fba65b12d8
+2026-10-22T10:17:43.4730580Z + git -C /Users/runner/work/UniXNU-PHY120/UniXNU-PHY120/UniXNU/out/feeds/corecrypto-2023-5ef10490 fetch -q --depth 1 origin 11fba65b12d8830630e248dfa8344caf8b065f26
+2026-10-22T10:17:49.0729810Z == fetch https://github.com/apple-oss-distributions/IOStorageFamily.git e45fbe30a787
+2026-10-22T10:17:49.1187770Z + git -C /Users/runner/work/UniXNU-PHY120/UniXNU-PHY120/UniXNU/out/feeds/IOStorageFamily-ad2e13e0 fetch -q --depth 1 origin e45fbe30a7879e0b16e26dddb78538f1b00e0bff
+2026-10-22T10:17:49.8630820Z == wrote /Users/runner/work/UniXNU-PHY120/UniXNU-PHY120/port/unixnu.lock
+2026-10-22T10:17:49.9048180Z ##[group]Run if [ -n "" ]; then
+2026-10-22T10:17:49.9048600Z [36;1mif [ -n "" ]; then[0m
+2026-10-22T10:17:49.9048900Z [36;1m  ./unixnu ipsw fetch --ipsw ""[0m
+2026-10-22T10:17:49.9049280Z [36;1melse[0m
+2026-10-22T10:17:49.9049640Z [36;1m  ./unixnu ipsw fetch || ./unixnu ipsw fetch --help[0m
+2026-10-22T10:17:49.9049950Z [36;1mfi[0m
+2026-10-22T10:17:49.9252510Z shell: /bin/bash -e {0}
+2026-10-22T10:17:49.9253140Z env:
+2026-10-22T10:17:49.9253800Z   REPORT: ci/last-run.md
+2026-10-22T10:17:49.9254430Z ##[endgroup]
+2026-10-22T10:17:50.1483570Z unixnu: no IPSW: pass --ipsw PATH_OR_URL (or UNIXNU_IPSW), or set url in board.toml [ipsw]
+2026-10-22T10:17:50.2675740Z usage: unixnu ipsw [-h] [-D DIR] [--out DIR] [-j JOBS] [--local DIR]
+2026-10-22T10:17:50.2777100Z                    [--local-drivers DIR] [--local-kits DIR]
+2026-10-22T10:17:50.2879040Z                    [--local-patches DIR] [--local-scripts DIR]
+2026-10-22T10:17:50.2897940Z                    [--local-package DIR] [--local-module [KIND:]NAME=PATH]
+2026-10-22T10:17:50.2946690Z                    [--uefi DIR] [--edk2 DIR] [--kernelcache FILE]
+2026-10-22T10:17:50.2961340Z                    [--skip-preflight] [--kernel FILE]
+2026-10-22T10:17:50.3000070Z                    [--kernel-arg NAME[=VALUE]] [--trust-cache FILE]
+2026-10-22T10:17:50.3000560Z                    [--owner-trust-cache FILE] [--skip-setup]
+2026-10-22T10:17:50.3001100Z                    [--data-ramdisk FILE] [--gpu-addon FILE]
+2026-10-22T10:17:50.3001640Z                    [--unique-chip-id HEX] [--ipsw PATH_OR_URL] [--dry-run]
+2026-10-22T10:17:50.3170460Z                    [--target {DEBUG,RELEASE}]
+2026-10-22T10:17:50.3171260Z                    {info,fetch} [components ...]
+2026-10-22T10:17:50.3171700Z 
+2026-10-22T10:17:50.3171890Z positional arguments:
+2026-10-22T10:17:50.3172340Z   {info,fetch}
+2026-10-22T10:17:50.3173000Z   components            components to extract (default: the small ones the
+2026-10-22T10:17:50.3173880Z                         board lists)
+2026-10-22T10:17:50.3174260Z 
+2026-10-22T10:17:50.3174420Z options:
+2026-10-22T10:17:50.3174930Z   -h, --help            show this help message and exit
+2026-10-22T10:17:50.3175790Z   -D, --device DIR      device repository (remembered; or UNIXNU_DEVICE)
+2026-10-22T10:17:50.3176760Z   --out DIR             output root (default: out/ here, or UNIXNU_OUT)
+2026-10-22T10:17:50.3178260Z   -j, --jobs JOBS       parallel jobs
+2026-10-22T10:17:50.3179050Z   --local DIR           directory laid out like this repository; its drivers,
+2026-10-22T10:17:50.3180090Z                         kits, patches, scripts and package are used
+2026-10-22T10:17:50.3180980Z   --local-drivers DIR   use DIR as the drivers directory (beats --local)
+2026-10-22T10:17:50.3181950Z   --local-kits DIR      use DIR as the kits directory (beats --local)
+2026-10-22T10:17:50.3183070Z   --local-patches DIR   use DIR as the patches directory (beats --local)
+2026-10-22T10:17:50.3184500Z   --local-scripts DIR   use DIR as the scripts directory (beats --local)
+2026-10-22T10:17:50.3185930Z   --local-package DIR   use DIR as the package directory (beats --local)
+2026-10-22T10:17:50.3186940Z   --local-module [KIND:]NAME=PATH
+2026-10-22T10:17:50.3187560Z                         use PATH for one module (beats everything)
+2026-10-22T10:17:50.3188390Z   --uefi DIR            Mu-Silicium checkout for the device (uefi-sheng); or
+2026-10-22T10:17:50.3190600Z                         UNIXNU_UEFI
+2026-10-22T10:17:50.3191430Z   --edk2 DIR            Mu_Basecore checkout; or UNIXNU_EDK2
+2026-10-22T10:17:50.3192300Z   --kernelcache FILE    original decompressed kernelcache; or
+2026-10-22T10:17:50.3193390Z                         UNIXNU_KERNELCACHE
+2026-10-22T10:17:50.3194190Z   --skip-preflight      skip the board preflight scripts of the firmware step
+2026-10-22T10:17:50.3195190Z   --kernel FILE         prelinked kernel Mach-O for the payload (default: the
+2026-10-22T10:17:50.3196380Z                         kernel step output)
+2026-10-22T10:17:50.3197630Z   --kernel-arg NAME[=VALUE]
+2026-10-22T10:17:50.3198030Z                         extra kernel boot argument (repeatable)
+2026-10-22T10:17:50.3198480Z   --trust-cache FILE    trust cache bundle for the payload
+2026-10-22T10:17:50.3198870Z   --owner-trust-cache FILE
+2026-10-22T10:17:50.3199170Z                         owner-signed trust cache bundle that carries the
+2026-10-22T10:17:50.3199640Z                         original caches and extra modules; replaces --trust-
+2026-10-22T10:17:50.3200030Z                         cache and skips the board allow-list
+2026-10-22T10:17:50.3200430Z   --skip-setup          mark Setup as done in the Data seed, so the Hello
+2026-10-22T10:17:50.3200840Z                         pages are skipped (needs --data-ramdisk; optional)
+2026-10-22T10:17:50.3204340Z   --data-ramdisk FILE   Data ramdisk seed for the payload (an input; not built
+2026-10-22T10:17:50.3204840Z                         here)
+2026-10-22T10:17:50.3205800Z   --gpu-addon FILE      GPU addon file (scripts/make-gpu-addon.py) the kernel
+2026-10-22T10:17:50.3206500Z                         writes into the Data volume at boot
+2026-10-22T10:17:50.3207060Z   --unique-chip-id HEX  platform seed for the device tree; or
+2026-10-22T10:17:50.3208570Z                         UNIXNU_UNIQUE_CHIP_ID
+2026-10-22T10:17:50.3209030Z   --ipsw PATH_OR_URL    the target IPSW: a local file or an https URL
+2026-10-22T10:17:50.3213530Z                         (default: url of board.toml [ipsw]); or UNIXNU_IPSW
+2026-10-22T10:17:50.3214900Z   --dry-run             userdata: check sizes and pins, write nothing
+2026-10-22T10:17:50.3215890Z   --target {DEBUG,RELEASE}
+2026-10-22T10:17:50.3217090Z                         EDK II build target
+2026-10-22T10:17:50.3313660Z ##[group]Run set -o pipefail
+2026-10-22T10:17:50.3314020Z [36;1mset -o pipefail[0m
+2026-10-22T10:17:50.3314240Z [36;1m./unixnu build kernel 2>&1 | tee ../kernel.log[0m
+2026-10-22T10:17:50.3371470Z shell: /bin/bash -e {0}
+2026-10-22T10:17:50.3371860Z env:
+2026-10-22T10:17:50.3372120Z   REPORT: ci/last-run.md
+2026-10-22T10:17:50.3372300Z ##[endgroup]
+2026-10-22T10:17:50.4991360Z == submodules /Users/runner/work/UniXNU-PHY120/UniXNU-PHY120/UniXNU
+2026-10-22T10:17:50.9414450Z == tree /Users/runner/work/UniXNU-PHY120/UniXNU-PHY120/UniXNU/out/PHY120/tree
+2026-10-22T10:17:51.2091540Z == kernel: XNU
+2026-10-22T10:17:51.2109170Z == kernel: bootstrap pass for the compile records
+2026-10-22T10:17:51.2110570Z + bash /Users/runner/work/UniXNU-PHY120/UniXNU-PHY120/UniXNU/out/PHY120/tree/scripts/build-xnu-4k-baseline.sh
+2026-10-22T10:17:57.8989940Z -- Installing: /Users/runner/work/UniXNU-PHY120/UniXNU-PHY120/UniXNU/out/PHY120/tree/.cache/fakeroot/usr/local/include/AvailabilityPrivate.modulemap
+2026-10-22T10:17:57.9002540Z -- Installing: /Users/runner/work/UniXNU-PHY120/UniXNU-PHY120/UniXNU/out/PHY120/tree/.cache/fakeroot/usr/include/os/availability.h
+2026-10-22T10:17:57.9010230Z -- Installing: /Users/runner/work/UniXNU-PHY120/UniXNU-PHY120/UniXNU/out/PHY120/tree/.cache/fakeroot/usr/include/Availability.h
+2026-10-22T10:17:57.9011390Z -- Installing: /Users/runner/work/UniXNU-PHY120/UniXNU-PHY120/UniXNU/out/PHY120/tree/.cache/fakeroot/usr/include/AvailabilityInternal.h
+2026-10-22T10:17:57.9014050Z -- Installing: /Users/runner/work/UniXNU-PHY120/UniXNU-PHY120/UniXNU/out/PHY120/tree/.cache/fakeroot/usr/include/AvailabilityInternalLegacy.h
+2026-10-22T10:17:57.9016490Z -- Installing: /Users/runner/work/UniXNU-PHY120/UniXNU-PHY120/UniXNU/out/PHY120/tree/.cache/fakeroot/usr/include/AvailabilityMacros.h
+2026-10-22T10:17:57.9019170Z -- Installing: /Users/runner/work/UniXNU-PHY120/UniXNU-PHY120/UniXNU/out/PHY120/tree/.cache/fakeroot/usr/include/AvailabilityVersions.h
+2026-10-22T10:17:57.9021590Z -- Installing: /Users/runner/work/UniXNU-PHY120/UniXNU-PHY120/UniXNU/out/PHY120/tree/.cache/fakeroot/usr/include/os_availability.modulemap
+2026-10-22T10:17:57.9024070Z -- Installing: /Users/runner/work/UniXNU-PHY120/UniXNU-PHY120/UniXNU/out/PHY120/tree/.cache/fakeroot/usr/local/libexec/availability.pl
+2026-10-22T10:17:57.9025970Z Traceback (most recent call last):
+2026-10-22T10:17:57.9027380Z   File "/Users/runner/work/UniXNU-PHY120/UniXNU-PHY120/UniXNU/out/PHY120/tree/scripts/prepare-xnu-source.py", line 40, in <module>
+2026-10-22T10:17:57.9029070Z     CACHE.write_bytes(urllib.request.urlopen(URL, timeout=30).read())
+2026-10-22T10:17:57.9029970Z                       ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+2026-10-22T10:17:57.9031540Z   File "/opt/homebrew/Cellar/python@3.14/3.14.7/Frameworks/Python.framework/Versions/3.14/lib/python3.14/urllib/request.py", line 187, in urlopen
+2026-10-22T10:17:57.9033290Z     return opener.open(url, data, timeout)
+2026-10-22T10:17:57.9034090Z            ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^
+2026-10-22T10:17:57.9035570Z   File "/opt/homebrew/Cellar/python@3.14/3.14.7/Frameworks/Python.framework/Versions/3.14/lib/python3.14/urllib/request.py", line 493, in open
+2026-10-22T10:17:57.9036950Z     response = meth(req, response)
+2026-10-22T10:17:57.9038440Z   File "/opt/homebrew/Cellar/python@3.14/3.14.7/Frameworks/Python.framework/Versions/3.14/lib/python3.14/urllib/request.py", line 602, in http_response
+2026-10-22T10:17:57.9039960Z     response = self.parent.error(
+2026-10-22T10:17:57.9041560Z         'http', request, response, code, msg, hdrs)
+2026-10-22T10:17:57.9042250Z   File "/opt/homebrew/Cellar/python@3.14/3.14.7/Frameworks/Python.framework/Versions/3.14/lib/python3.14/urllib/request.py", line 531, in error
+2026-10-22T10:17:57.9042870Z     return self._call_chain(*args)
+2026-10-22T10:17:57.9043250Z            ~~~~~~~~~~~~~~~~^^^^^^^
+2026-10-22T10:17:57.9045280Z   File "/opt/homebrew/Cellar/python@3.14/3.14.7/Frameworks/Python.framework/Versions/3.14/lib/python3.14/urllib/request.py", line 464, in _call_chain
+2026-10-22T10:17:57.9045890Z     result = func(*args)
+2026-10-22T10:17:57.9046490Z   File "/opt/homebrew/Cellar/python@3.14/3.14.7/Frameworks/Python.framework/Versions/3.14/lib/python3.14/urllib/request.py", line 611, in http_error_default
+2026-10-22T10:17:57.9047050Z     raise HTTPError(req.full_url, code, msg, hdrs, fp)
+2026-10-22T10:17:57.9047440Z urllib.error.HTTPError: HTTP Error 403: rate limit exceeded
+2026-10-22T10:17:57.9047870Z build-xnu-4k-baseline.sh: line 51: python3 scripts/prepare-xnu-source.py failed
+2026-10-22T10:17:57.9048470Z unixnu: bash failed (1); full log: /Users/runner/work/UniXNU-PHY120/UniXNU-PHY120/UniXNU/out/PHY120/logs/kernel-bootstrap.log
+2026-10-22T10:17:57.9166320Z ##[error]Process completed with exit code 1.
+2026-10-22T10:17:57.9501040Z ##[group]Run cd port
+2026-10-22T10:17:57.9501300Z [36;1mcd port[0m
+2026-10-22T10:17:57.9501500Z [36;1mmkdir -p ci[0m
+2026-10-22T10:17:57.9501700Z [36;1m{[0m
+2026-10-22T10:17:57.9501860Z [36;1m  echo "# 最近一次内核构建"[0m
+2026-10-22T10:17:57.9502040Z [36;1m  echo[0m
+2026-10-22T10:17:57.9502230Z [36;1m  echo "| 项 | 值 |"[0m
+2026-10-22T10:17:57.9502420Z [36;1m  echo "| --- | --- |"[0m
+2026-10-22T10:17:57.9502640Z [36;1m  echo "| 时间 | $(date -u +%FT%TZ) |"[0m
+2026-10-22T10:17:57.9502880Z [36;1m  echo "| 提交 | \`${GITHUB_SHA}\` |"[0m
+2026-10-22T10:17:57.9522100Z [36;1m  echo "| 触发 | ${GITHUB_EVENT_NAME} |"[0m
+2026-10-22T10:17:57.9522550Z [36;1m  echo "| 作业状态 | ${JOB_STATUS} |"[0m
+2026-10-22T10:17:57.9523460Z [36;1m  echo[0m
+2026-10-22T10:17:57.9524270Z [36;1m  echo "## 产物"[0m
+2026-10-22T10:17:57.9524870Z [36;1m  echo[0m
+2026-10-22T10:17:57.9525430Z [36;1m  echo '```'[0m
+2026-10-22T10:17:57.9526550Z [36;1m  ls -l ../UniXNU/out/PHY120/kernel/ 2>/dev/null || echo "(没有 kernel 输出)"[0m
+2026-10-22T10:17:57.9527540Z [36;1m  echo '```'[0m
+2026-10-22T10:17:57.9528010Z [36;1m  echo[0m
+2026-10-22T10:17:57.9528960Z [36;1m  echo "## kernel.log 末尾 150 行"[0m
+2026-10-22T10:17:57.9529200Z [36;1m  echo[0m
+2026-10-22T10:17:57.9529370Z [36;1m  echo '```'[0m
+2026-10-22T10:17:57.9529710Z [36;1m  tail -150 ../kernel.log 2>/dev/null || echo "(没有日志)"[0m
+2026-10-22T10:17:57.9529990Z [36;1m  echo '```'[0m
+2026-10-22T10:17:57.9530190Z [36;1m} > "$REPORT"[0m
+2026-10-22T10:17:57.9530510Z [36;1mgit config user.name  "github-actions[bot]"[0m
+2026-10-22T10:17:57.9530910Z [36;1mgit config user.email "41898282+github-actions[bot]@users.noreply.github.com"[0m
+2026-10-22T10:17:57.9531250Z [36;1mgit add "$REPORT"[0m
+2026-10-22T10:17:57.9531480Z [36;1mif git diff --cached --quiet; then[0m
+2026-10-22T10:17:57.9531710Z [36;1m  echo "no report change"[0m
+2026-10-22T10:17:57.9531910Z [36;1melse[0m
+2026-10-22T10:17:57.9532170Z [36;1m  git commit -m "ci: record the last kernel build [skip ci]"[0m
+2026-10-22T10:17:57.9532450Z [36;1m  git push[0m
+2026-10-22T10:17:57.9532730Z [36;1mfi[0m
+2026-10-22T10:17:57.9778380Z shell: /bin/bash -e {0}
+2026-10-22T10:17:57.9778650Z env:
+2026-10-22T10:17:57.9779020Z   REPORT: ci/last-run.md
+2026-10-22T10:17:57.9779270Z   JOB_STATUS: failure
+2026-10-22T10:17:57.9779480Z ##[endgroup]
+2026-10-22T10:17:58.0875520Z [main 3d09166] ci: record the last kernel build [skip ci]
+2026-10-22T10:17:58.0879530Z  1 file changed, 55 insertions(+)
+2026-10-22T10:17:58.0881470Z  create mode 100644 ci/last-run.md
+2026-10-22T10:17:58.6328740Z To https://github.com/peiyuesheng666/UniXNU-PHY120
+2026-10-22T10:17:58.6329340Z  ! [rejected]        main -> main (fetch first)
+2026-10-22T10:17:58.6329930Z error: failed to push some refs to 'https://github.com/peiyuesheng666/UniXNU-PHY120'
+2026-10-22T10:17:58.6339720Z ##[error]Process completed with exit code 1.
+2026-10-22T10:17:58.6426180Z ##[group]Run actions/upload-artifact@v4
+2026-10-22T10:17:58.6426420Z with:
+2026-10-22T10:17:58.6426580Z   name: phy120-kernel
+2026-10-22T10:17:58.6426830Z   path: UniXNU/out/PHY120/kernel/
+UniXNU/out/PHY120/logs/
+kernel.log
+
+2026-10-22T10:17:58.6427360Z   retention-days: 14
+2026-10-22T10:17:58.6427560Z   if-no-files-found: warn
+2026-10-22T10:17:58.6427750Z   compression-level: 6
+2026-10-22T10:17:58.6427930Z   overwrite: false
+2026-10-22T10:17:58.6428100Z   include-hidden-files: false
+2026-10-22T10:17:58.6428280Z env:
+2026-10-22T10:17:58.6428420Z   REPORT: ci/last-run.md
+2026-10-22T10:17:58.6428600Z ##[endgroup]
+2026-10-22T10:17:59.5087700Z (node:2871) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-10-22T10:17:59.5092630Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-10-22T10:17:59.5163860Z Multiple search paths detected. Calculating the least common ancestor of all paths
+2026-10-22T10:17:59.5168810Z The least common ancestor is /Users/runner/work/UniXNU-PHY120/UniXNU-PHY120. This will be the root directory of the artifact
+2026-10-22T10:17:59.5170410Z With the provided path, there will be 2 files uploaded
+2026-10-22T10:17:59.5173780Z Artifact name is valid!
+2026-10-22T10:17:59.5175520Z Root directory input is valid!
+2026-10-22T10:17:59.9410890Z Beginning upload of artifact content to blob storage
+2026-10-22T10:17:59.9599630Z (node:2871) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+2026-10-22T10:18:00.2234830Z Uploaded bytes 2651
+2026-10-22T10:18:00.2951020Z Finished uploading artifact content to blob storage!
+2026-10-22T10:18:00.2952450Z SHA256 digest of uploaded artifact zip is 23ffb2dd7b04a9be94d3eff3d1bb9019a9543e8ad1e220f6a17eb21ba5affaf0
+2026-10-22T10:18:00.2953730Z Finalizing artifact upload
+2026-10-22T10:18:00.8094830Z Artifact phy120-kernel.zip successfully finalized. Artifact ID 12418631830
+2026-10-22T10:18:00.8100660Z Artifact phy120-kernel has been successfully uploaded! Final size is 2651 bytes. Artifact ID is 12418631830
+2026-10-22T10:18:00.8105320Z Artifact download URL: https://github.com/peiyuesheng666/UniXNU-PHY120/actions/runs/39761836329/artifacts/12418631830
+2026-10-22T10:18:00.8303700Z Post job cleanup.
+2026-10-22T10:18:00.9523900Z [command]/opt/homebrew/bin/git version
+2026-10-22T10:18:00.9617990Z git version 2.55.0
+2026-10-22T10:18:00.9642750Z Copying '/Users/runner/.gitconfig' to '/Users/runner/work/_temp/dc7de6d0-c153-4c9d-8ea4-ba57385e7864/.gitconfig'
+2026-10-22T10:18:00.9652610Z Temporarily overriding HOME='/Users/runner/work/_temp/dc7de6d0-c153-4c9d-8ea4-ba57385e7864' before making global git config changes
+2026-10-22T10:18:00.9654120Z Adding repository directory to the temporary git global config as a safe directory
+2026-10-22T10:18:00.9659200Z [command]/opt/homebrew/bin/git config --global --add safe.directory /Users/runner/work/UniXNU-PHY120/UniXNU-PHY120/UniXNU
+2026-10-22T10:18:00.9736700Z [command]/opt/homebrew/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-10-22T10:18:00.9805170Z [command]/opt/homebrew/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-10-22T10:18:01.0591370Z Entering 'drivers/ArmCpu'
+2026-10-22T10:18:01.0769800Z Entering 'drivers/ArmDTPlatform'
+2026-10-22T10:18:01.0947680Z Entering 'drivers/ArmVirtPlatform'
+2026-10-22T10:18:01.1128150Z Entering 'drivers/DarwinBoot'
+2026-10-22T10:18:01.1299080Z Entering 'drivers/NativeAES'
+2026-10-22T10:18:01.1476730Z Entering 'drivers/NativeAdreno'
+2026-10-22T10:18:01.1672110Z Entering 'drivers/NativeGeniSpi'
+2026-10-22T10:18:01.1850420Z Entering 'drivers/NativeHidInput'
+2026-10-22T10:18:01.2012280Z Entering 'drivers/NativeKeyStoreEvents'
+2026-10-22T10:18:01.2185260Z Entering 'drivers/NativeMetal'
+2026-10-22T10:18:01.2352750Z Entering 'drivers/NativeMobileDisplay'
+2026-10-22T10:18:01.2548680Z Entering 'drivers/NativeRamBlock'
+2026-10-22T10:18:01.2774150Z Entering 'drivers/NativeUfs'
+2026-10-22T10:18:01.2973530Z Entering 'drivers/NativeVirtioBlock'
+2026-10-22T10:18:01.3179530Z Entering 'drivers/NativeVirtioConsole'
+2026-10-22T10:18:01.3364900Z Entering 'kits/AdrenoFirmware'
+2026-10-22T10:18:01.3542780Z Entering 'kits/AdrenoPM4'
+2026-10-22T10:18:01.3747240Z Entering 'kits/AirNir'
+2026-10-22T10:18:01.3918020Z Entering 'kits/ArmSmmu4K'
+2026-10-22T10:18:01.4081980Z Entering 'kits/NativePrelink'
+2026-10-22T10:18:01.4262740Z Entering 'kits/VerifiedRoot'
+2026-10-22T10:18:01.4464500Z [command]/opt/homebrew/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-10-22T10:18:01.4514970Z http.https://github.com/.extraheader
+2026-10-22T10:18:01.4522740Z [command]/opt/homebrew/bin/git config --local --unset-all http.https://github.com/.extraheader
+2026-10-22T10:18:01.4589650Z [command]/opt/homebrew/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-10-22T10:18:01.5311520Z Entering 'drivers/ArmCpu'
+2026-10-22T10:18:01.5478430Z Entering 'drivers/ArmDTPlatform'
+2026-10-22T10:18:01.5646610Z Entering 'drivers/ArmVirtPlatform'
+2026-10-22T10:18:01.5817450Z Entering 'drivers/DarwinBoot'
+2026-10-22T10:18:01.5989800Z Entering 'drivers/NativeAES'
+2026-10-22T10:18:01.6167890Z Entering 'drivers/NativeAdreno'
+2026-10-22T10:18:01.6334680Z Entering 'drivers/NativeGeniSpi'
+2026-10-22T10:18:01.6507090Z Entering 'drivers/NativeHidInput'
+2026-10-22T10:18:01.6678760Z Entering 'drivers/NativeKeyStoreEvents'
+2026-10-22T10:18:01.6846410Z Entering 'drivers/NativeMetal'
+2026-10-22T10:18:01.7011740Z Entering 'drivers/NativeMobileDisplay'
+2026-10-22T10:18:01.7189190Z Entering 'drivers/NativeRamBlock'
+2026-10-22T10:18:01.7360380Z Entering 'drivers/NativeUfs'
+2026-10-22T10:18:01.7526080Z Entering 'drivers/NativeVirtioBlock'
+2026-10-22T10:18:01.7682470Z Entering 'drivers/NativeVirtioConsole'
+2026-10-22T10:18:01.7835350Z Entering 'kits/AdrenoFirmware'
+2026-10-22T10:18:01.8000520Z Entering 'kits/AdrenoPM4'
+2026-10-22T10:18:01.8176840Z Entering 'kits/AirNir'
+2026-10-22T10:18:01.8337590Z Entering 'kits/ArmSmmu4K'
+2026-10-22T10:18:01.8501500Z Entering 'kits/NativePrelink'
+2026-10-22T10:18:01.8659790Z Entering 'kits/VerifiedRoot'
+2026-10-22T10:18:01.8833560Z [command]/opt/homebrew/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-10-22T10:18:01.8888990Z [command]/opt/homebrew/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-10-22T10:18:01.9572590Z Entering 'drivers/ArmCpu'
+2026-10-22T10:18:01.9647950Z file:/Users/runner/work/UniXNU-PHY120/UniXNU-PHY120/UniXNU/.git/modules/drivers/ArmCpu/config	remote.origin.url
+2026-10-22T10:18:01.9716070Z Entering 'drivers/ArmDTPlatform'
+2026-10-22T10:18:01.9821940Z file:/Users/runner/work/UniXNU-PHY120/UniXNU-PHY120/UniXNU/.git/modules/drivers/ArmDTPlatform/config	remote.origin.url
+2026-10-22T10:18:01.9889370Z Entering 'drivers/ArmVirtPlatform'
+2026-10-22T10:18:01.9975780Z file:/Users/runner/work/UniXNU-PHY120/UniXNU-PHY120/UniXNU/.git/modules/drivers/ArmVirtPlatform/config	remote.origin.url
+2026-10-22T10:18:02.0025990Z Entering 'drivers/DarwinBoot'
+2026-10-22T10:18:02.0148450Z file:/Users/runner/work/UniXNU-PHY120/UniXNU-PHY120/UniXNU/.git/modules/drivers/DarwinBoot/config	remote.origin.url
+2026-10-22T10:18:02.0256270Z Entering 'drivers/NativeAES'
+2026-10-22T10:18:02.0352110Z file:/Users/runner/work/UniXNU-PHY120/UniXNU-PHY120/UniXNU/.git/modules/drivers/NativeAES/config	remote.origin.url
+2026-10-22T10:18:02.0465250Z Entering 'drivers/NativeAdreno'
+2026-10-22T10:18:02.0591560Z file:/Users/runner/work/UniXNU-PHY120/UniXNU-PHY120/UniXNU/.git/modules/drivers/NativeAdreno/config	remote.origin.url
+2026-10-22T10:18:02.0659180Z Entering 'drivers/NativeGeniSpi'
+2026-10-22T10:18:02.0784200Z file:/Users/runner/work/UniXNU-PHY120/UniXNU-PHY120/UniXNU/.git/modules/drivers/NativeGeniSpi/config	remote.origin.url
+2026-10-22T10:18:02.0847100Z Entering 'drivers/NativeHidInput'
+2026-10-22T10:18:02.0965380Z file:/Users/runner/work/UniXNU-PHY120/UniXNU-PHY120/UniXNU/.git/modules/drivers/NativeHidInput/config	remote.origin.url
+2026-10-22T10:18:02.1031980Z Entering 'drivers/NativeKeyStoreEvents'
+2026-10-22T10:18:02.1136030Z file:/Users/runner/work/UniXNU-PHY120/UniXNU-PHY120/UniXNU/.git/modules/drivers/NativeKeyStoreEvents/config	remote.origin.url
+2026-10-22T10:18:02.1218800Z Entering 'drivers/NativeMetal'
+2026-10-22T10:18:02.1355900Z file:/Users/runner/work/UniXNU-PHY120/UniXNU-PHY120/UniXNU/.git/modules/drivers/NativeMetal/config	remote.origin.url
+2026-10-22T10:18:02.1434280Z Entering 'drivers/NativeMobileDisplay'
+2026-10-22T10:18:02.1556280Z file:/Users/runner/work/UniXNU-PHY120/UniXNU-PHY120/UniXNU/.git/modules/drivers/NativeMobileDisplay/config	remote.origin.url
+2026-10-22T10:18:02.1659230Z Entering 'drivers/NativeRamBlock'
+2026-10-22T10:18:02.1774210Z file:/Users/runner/work/UniXNU-PHY120/UniXNU-PHY120/UniXNU/.git/modules/drivers/NativeRamBlock/config	remote.origin.url
+2026-10-22T10:18:02.1824210Z Entering 'drivers/NativeUfs'
+2026-10-22T10:18:02.1933700Z file:/Users/runner/work/UniXNU-PHY120/UniXNU-PHY120/UniXNU/.git/modules/drivers/NativeUfs/config	remote.origin.url
+2026-10-22T10:18:02.1983630Z Entering 'drivers/NativeVirtioBlock'
+2026-10-22T10:18:02.2081420Z file:/Users/runner/work/UniXNU-PHY120/UniXNU-PHY120/UniXNU/.git/modules/drivers/NativeVirtioBlock/config	remote.origin.url
+2026-10-22T10:18:02.2132470Z Entering 'drivers/NativeVirtioConsole'
+2026-10-22T10:18:02.2224350Z file:/Users/runner/work/UniXNU-PHY120/UniXNU-PHY120/UniXNU/.git/modules/drivers/NativeVirtioConsole/config	remote.origin.url
+2026-10-22T10:18:02.2309400Z Entering 'kits/AdrenoFirmware'
+2026-10-22T10:18:02.2433590Z file:/Users/runner/work/UniXNU-PHY120/UniXNU-PHY120/UniXNU/.git/modules/kits/AdrenoFirmware/config	remote.origin.url
+2026-10-22T10:18:02.2496900Z Entering 'kits/AdrenoPM4'
+2026-10-22T10:18:02.2652630Z file:/Users/runner/work/UniXNU-PHY120/UniXNU-PHY120/UniXNU/.git/modules/kits/AdrenoPM4/config	remote.origin.url
+2026-10-22T10:18:02.2712400Z Entering 'kits/AirNir'
+2026-10-22T10:18:02.2892200Z file:/Users/runner/work/UniXNU-PHY120/UniXNU-PHY120/UniXNU/.git/modules/kits/AirNir/config	remote.origin.url
+2026-10-22T10:18:02.2983530Z Entering 'kits/ArmSmmu4K'
+2026-10-22T10:18:02.3066780Z file:/Users/runner/work/UniXNU-PHY120/UniXNU-PHY120/UniXNU/.git/modules/kits/ArmSmmu4K/config	remote.origin.url
+2026-10-22T10:18:02.3134890Z Entering 'kits/NativePrelink'
+2026-10-22T10:18:02.3258460Z file:/Users/runner/work/UniXNU-PHY120/UniXNU-PHY120/UniXNU/.git/modules/kits/NativePrelink/config	remote.origin.url
+2026-10-22T10:18:02.3312220Z Entering 'kits/VerifiedRoot'
+2026-10-22T10:18:02.3468590Z file:/Users/runner/work/UniXNU-PHY120/UniXNU-PHY120/UniXNU/.git/modules/kits/VerifiedRoot/config	remote.origin.url
+2026-10-22T10:18:02.3539440Z [command]/opt/homebrew/bin/git config --file /Users/runner/work/UniXNU-PHY120/UniXNU-PHY120/UniXNU/.git/modules/drivers/ArmCpu/config --name-only --get-regexp ^includeIf\.gitdir:
+2026-10-22T10:18:02.3593630Z [command]/opt/homebrew/bin/git config --file /Users/runner/work/UniXNU-PHY120/UniXNU-PHY120/UniXNU/.git/modules/drivers/ArmDTPlatform/config --name-only --get-regexp ^includeIf\.gitdir:
+2026-10-22T10:18:02.3643580Z [command]/opt/homebrew/bin/git config --file /Users/runner/work/UniXNU-PHY120/UniXNU-PHY120/UniXNU/.git/modules/drivers/ArmVirtPlatform/config --name-only --get-regexp ^includeIf\.gitdir:
+2026-10-22T10:18:02.3693000Z [command]/opt/homebrew/bin/git config --file /Users/runner/work/UniXNU-PHY120/UniXNU-PHY120/UniXNU/.git/modules/drivers/DarwinBoot/config --name-only --get-regexp ^includeIf\.gitdir:
+2026-10-22T10:18:02.3750170Z [command]/opt/homebrew/bin/git config --file /Users/runner/work/UniXNU-PHY120/UniXNU-PHY120/UniXNU/.git/modules/drivers/NativeAES/config --name-only --get-regexp ^includeIf\.gitdir:
+2026-10-22T10:18:02.3798760Z [command]/opt/homebrew/bin/git config --file /Users/runner/work/UniXNU-PHY120/UniXNU-PHY120/UniXNU/.git/modules/drivers/NativeAdreno/config --name-only --get-regexp ^includeIf\.gitdir:
+2026-10-22T10:18:02.3849230Z [command]/opt/homebrew/bin/git config --file /Users/runner/work/UniXNU-PHY120/UniXNU-PHY120/UniXNU/.git/modules/drivers/NativeGeniSpi/config --name-only --get-regexp ^includeIf\.gitdir:
+2026-10-22T10:18:02.3898440Z [command]/opt/homebrew/bin/git config --file /Users/runner/work/UniXNU-PHY120/UniXNU-PHY120/UniXNU/.git/modules/drivers/NativeHidInput/config --name-only --get-regexp ^includeIf\.gitdir:
+2026-10-22T10:18:02.3945750Z [command]/opt/homebrew/bin/git config --file /Users/runner/work/UniXNU-PHY120/UniXNU-PHY120/UniXNU/.git/modules/drivers/NativeKeyStoreEvents/config --name-only --get-regexp ^includeIf\.gitdir:
+2026-10-22T10:18:02.3996530Z [command]/opt/homebrew/bin/git config --file /Users/runner/work/UniXNU-PHY120/UniXNU-PHY120/UniXNU/.git/modules/drivers/NativeMetal/config --name-only --get-regexp ^includeIf\.gitdir:
+2026-10-22T10:18:02.4046640Z [command]/opt/homebrew/bin/git config --file /Users/runner/work/UniXNU-PHY120/UniXNU-PHY120/UniXNU/.git/modules/drivers/NativeMobileDisplay/config --name-only --get-regexp ^includeIf\.gitdir:
+2026-10-22T10:18:02.4099890Z [command]/opt/homebrew/bin/git config --file /Users/runner/work/UniXNU-PHY120/UniXNU-PHY120/UniXNU/.git/modules/drivers/NativeRamBlock/config --name-only --get-regexp ^includeIf\.gitdir:
+2026-10-22T10:18:02.4144410Z [command]/opt/homebrew/bin/git config --file /Users/runner/work/UniXNU-PHY120/UniXNU-PHY120/UniXNU/.git/modules/drivers/NativeUfs/config --name-only --get-regexp ^includeIf\.gitdir:
+2026-10-22T10:18:02.4193770Z [command]/opt/homebrew/bin/git config --file /Users/runner/work/UniXNU-PHY120/UniXNU-PHY120/UniXNU/.git/modules/drivers/NativeVirtioBlock/config --name-only --get-regexp ^includeIf\.gitdir:
+2026-10-22T10:18:02.4254250Z [command]/opt/homebrew/bin/git config --file /Users/runner/work/UniXNU-PHY120/UniXNU-PHY120/UniXNU/.git/modules/drivers/NativeVirtioConsole/config --name-only --get-regexp ^includeIf\.gitdir:
+2026-10-22T10:18:02.4304740Z [command]/opt/homebrew/bin/git config --file /Users/runner/work/UniXNU-PHY120/UniXNU-PHY120/UniXNU/.git/modules/kits/AdrenoFirmware/config --name-only --get-regexp ^includeIf\.gitdir:
+2026-10-22T10:18:02.4349360Z [command]/opt/homebrew/bin/git config --file /Users/runner/work/UniXNU-PHY120/UniXNU-PHY120/UniXNU/.git/modules/kits/AdrenoPM4/config --name-only --get-regexp ^includeIf\.gitdir:
+2026-10-22T10:18:02.4396280Z [command]/opt/homebrew/bin/git config --file /Users/runner/work/UniXNU-PHY120/UniXNU-PHY120/UniXNU/.git/modules/kits/AirNir/config --name-only --get-regexp ^includeIf\.gitdir:
+2026-10-22T10:18:02.4441590Z [command]/opt/homebrew/bin/git config --file /Users/runner/work/UniXNU-PHY120/UniXNU-PHY120/UniXNU/.git/modules/kits/ArmSmmu4K/config --name-only --get-regexp ^includeIf\.gitdir:
+2026-10-22T10:18:02.4495620Z [command]/opt/homebrew/bin/git config --file /Users/runner/work/UniXNU-PHY120/UniXNU-PHY120/UniXNU/.git/modules/kits/NativePrelink/config --name-only --get-regexp ^includeIf\.gitdir:
+2026-10-22T10:18:02.4541840Z [command]/opt/homebrew/bin/git config --file /Users/runner/work/UniXNU-PHY120/UniXNU-PHY120/UniXNU/.git/modules/kits/VerifiedRoot/config --name-only --get-regexp ^includeIf\.gitdir:
+2026-10-22T10:18:02.4693280Z Post job cleanup.
+2026-10-22T10:18:02.5680570Z [command]/opt/homebrew/bin/git version
+2026-10-22T10:18:02.5767650Z git version 2.55.0
+2026-10-22T10:18:02.5791290Z Copying '/Users/runner/.gitconfig' to '/Users/runner/work/_temp/4bc36dd0-bb18-4230-a155-dd5e6ceaad70/.gitconfig'
+2026-10-22T10:18:02.5796960Z Temporarily overriding HOME='/Users/runner/work/_temp/4bc36dd0-bb18-4230-a155-dd5e6ceaad70' before making global git config changes
+2026-10-22T10:18:02.5798850Z Adding repository directory to the temporary git global config as a safe directory
+2026-10-22T10:18:02.5802300Z [command]/opt/homebrew/bin/git config --global --add safe.directory /Users/runner/work/UniXNU-PHY120/UniXNU-PHY120/port
+2026-10-22T10:18:02.5874260Z [command]/opt/homebrew/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-10-22T10:18:02.5939440Z [command]/opt/homebrew/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-10-22T10:18:02.6740090Z [command]/opt/homebrew/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-10-22T10:18:02.6816570Z http.https://github.com/.extraheader
+2026-10-22T10:18:02.6847550Z [command]/opt/homebrew/bin/git config --local --unset-all http.https://github.com/.extraheader
+2026-10-22T10:18:02.6948950Z [command]/opt/homebrew/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-10-22T10:18:02.7943920Z [command]/opt/homebrew/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-10-22T10:18:02.8008710Z [command]/opt/homebrew/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-10-22T10:18:02.9397440Z Cleaning up orphan processes
+2026-10-22T10:18:03.4870380Z ##[warning]Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/checkout@v4, actions/upload-artifact@v4. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/

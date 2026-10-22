@@ -72,6 +72,36 @@ jobs:
             ./unixnu ipsw fetch || ./unixnu ipsw fetch --help
           fi
 
+      - name: Authenticate the Apple source fetch
+        working-directory: UniXNU
+        env:
+          GH_TOKEN_FOR_FETCH: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          # scripts/prepare-xnu-source.py lists three Apple directories through the
+          # GitHub API with plain urllib, which runs into the anonymous rate limit of
+          # the shared runner IP (HTTP 403). Give those calls the runner's token.
+          python3 - <<'EOF'
+          import os, pathlib
+          p = pathlib.Path("scripts/prepare-xnu-source.py")
+          s = p.read_text()
+          if "GH_TOKEN_FOR_FETCH" not in s:
+              inject = """_tok = os.environ.get('GH_TOKEN_FOR_FETCH')
+          if _tok:
+              _orig = urllib.request.urlopen
+              def _open(url, *a, **kw):
+                  req = urllib.request.Request(url if isinstance(url, str) else url)
+                  req.add_header('Authorization', 'Bearer ' + _tok)
+                  return _orig(req, *a, **kw)
+              urllib.request.urlopen = _open
+          """
+              s = s.replace("import urllib.request",
+                            "import urllib.request\n" + inject, 1)
+              p.write_text(s)
+              print("patched prepare-xnu-source.py")
+          else:
+              print("already patched")
+          EOF
+
       - name: Build and prelink the kernel
         working-directory: UniXNU
         run: |
