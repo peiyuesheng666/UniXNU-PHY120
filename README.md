@@ -76,3 +76,10 @@ bootloader relies on the DTB section sitting at `0x11A5000`.
 ## Status
 
 The UniXNU boot manager runs on the device and shows its menu.
+
+## Related projects
+
+Two community ports on the same SM8650 are much further ahead - see
+[docs/reference-projects.md](docs/reference-projects.md). The OnePlus Ace 5 (giulia)
+port already reaches the Hello / Setup screen on iOS 16 / Darwin 22, which is why
+this port targets that line as well.

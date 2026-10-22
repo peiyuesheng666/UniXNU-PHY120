@@ -74,3 +74,9 @@ SEC 随即以 `Decompress Failed - Invalid Parameter` 失败。
 ## 当前状态
 
 UniXNU 启动管理器已在设备上运行并显示菜单。
+
+## 相关项目
+
+SM8650 上已有两个进度领先的社区项目，见 [docs/reference-projects.md](docs/reference-projects.md)：
+一加 Ace 5（giulia）已到 Hello / 设置界面，走 iOS 16 / Darwin 22 路线。
+我们的目标系统也随之改为 iOS 16 / Darwin 22。
