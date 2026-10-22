@@ -1,30 +1,44 @@
 name: PHY120 UniXNU kernel (official path)
 
 # Builds kernel.macho the way UniXNU intends: ./unixnu applies its own xnu patches,
-# builds with Xcode and prelinks against the target IPSW's kernelcache. This runs on
-# a GitHub macOS runner, so no Mac is needed locally.
+# builds with Xcode, and prelinks against the target IPSW's kernelcache. Runs on a
+# GitHub macOS runner, so no Mac is needed locally.
 #
-# The harness-based workflow (xnu.yml) stays as a fallback: it can build a bare
-# kernel but cannot do the prelink step.
+# Self-reporting: the run appends its result to ci/last-run.md and pushes it back,
+# so the outcome can be read with a plain `git fetch` (no API access needed).
 on:
+  push:
+    branches: [main]
+    paths:
+      - 'configs/**'
+      - 'uefi/**'
+      - 'board.toml'
+      - '.github/workflows/unixnu-kernel.yml'
   workflow_dispatch:
     inputs:
       ipsw_url:
         description: IPSW to take the kernelcache from (leave empty for board.toml's)
         type: string
         default: ''
+
 permissions:
-  contents: read
+  contents: write
+
+concurrency:
+  group: phy120-kernel
+  cancel-in-progress: true
 
 jobs:
   kernel:
     runs-on: macos-14
     timeout-minutes: 180
+    env:
+      REPORT: ci/last-run.md
     steps:
       - name: Checkout the port
         uses: actions/checkout@v4
         with:
-          path: UniXNU-PHY120
+          path: port
 
       - name: Checkout the UniXNU build driver
         uses: actions/checkout@v4
@@ -35,8 +49,6 @@ jobs:
       - name: Toolchain
         run: |
           brew install cmake ninja unifdef llvm mtools dtc || true
-          # UniXNU's driver looks for Homebrew's LLVM directly
-          ls -d /opt/homebrew/opt/llvm/bin 2>/dev/null || true
           xcodebuild -version
           xcrun --sdk iphoneos --show-sdk-version
           python3 --version
@@ -44,20 +56,20 @@ jobs:
       - name: Select the device config
         working-directory: UniXNU
         run: |
-          ./unixnu defconfig PHY120_defconfig -D ../UniXNU-PHY120
+          ./unixnu defconfig PHY120_defconfig -D ../port
           ./unixnu status || true
 
       - name: Fetch sources
         working-directory: UniXNU
         run: ./unixnu fetch
 
-      - name: Fetch the IPSW members
+      - name: Fetch IPSW members
         working-directory: UniXNU
         run: |
-          if [ -n "${{ inputs.ipsw_url }}" ]; then
-            ./unixnu ipsw fetch --ipsw "${{ inputs.ipsw_url }}"
+          if [ -n "${{ github.event.inputs.ipsw_url }}" ]; then
+            ./unixnu ipsw fetch --ipsw "${{ github.event.inputs.ipsw_url }}"
           else
-            ./unixnu ipsw fetch
+            ./unixnu ipsw fetch || ./unixnu ipsw fetch --help
           fi
 
       - name: Build and prelink the kernel
@@ -66,16 +78,49 @@ jobs:
           set -o pipefail
           ./unixnu build kernel 2>&1 | tee ../kernel.log
 
-      - name: Report
+      - name: Publish the report back to the repository
         if: always()
         run: |
-          ls -l UniXNU/out/PHY120/kernel/ 2>/dev/null || true
-          tail -40 kernel.log || true
+          cd port
+          mkdir -p ci
+          {
+            echo "# 最近一次内核构建"
+            echo
+            echo "| 项 | 值 |"
+            echo "| --- | --- |"
+            echo "| 时间 | $(date -u +%FT%TZ) |"
+            echo "| 提交 | \`${GITHUB_SHA}\` |"
+            echo "| 触发 | ${GITHUB_EVENT_NAME} |"
+            echo "| 作业状态 | ${JOB_STATUS} |"
+            echo
+            echo "## 产物"
+            echo
+            echo '```'
+            ls -l ../UniXNU/out/PHY120/kernel/ 2>/dev/null || echo "(没有 kernel 输出)"
+            echo '```'
+            echo
+            echo "## kernel.log 末尾 150 行"
+            echo
+            echo '```'
+            tail -150 ../kernel.log 2>/dev/null || echo "(没有日志)"
+            echo '```'
+          } > "$REPORT"
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add "$REPORT"
+          if git diff --cached --quiet; then
+            echo "no report change"
+          else
+            git commit -m "ci: record the last kernel build [skip ci]"
+            git push
+          fi
+        env:
+          JOB_STATUS: ${{ job.status }}
 
       - uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: phy120-kernel-macho
+          name: phy120-kernel
           path: |
             UniXNU/out/PHY120/kernel/
             UniXNU/out/PHY120/logs/
