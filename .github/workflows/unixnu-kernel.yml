@@ -119,6 +119,8 @@ jobs:
         run: |
           cp ../port/ci/patch-tree.sh scripts/phy120-patch-tree.sh
           chmod +x scripts/phy120-patch-tree.sh
+          rm -rf scripts/phy120-xnu-cache
+          cp -r ../port/ci/xnu-cache scripts/phy120-xnu-cache
           python3 - <<'EOF'
           import pathlib
           p = pathlib.Path("scripts/build-xnu-4k-baseline.sh")

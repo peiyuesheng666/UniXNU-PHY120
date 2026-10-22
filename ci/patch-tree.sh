@@ -10,6 +10,16 @@
 # from the build entirely. DriverKit is user-space driver support and is not used
 # by anything this port boots.
 set -eu
+
+# Seed the Apple directory listings so prepare-xnu-source.py never needs the network.
+# The listings are committed under ci/xnu-cache and copied next to this script.
+SEED_DIR="$(cd "$(dirname "$0")" && pwd)/phy120-xnu-cache"
+if [ -d "$SEED_DIR" ]; then
+  mkdir -p "$ROOT/.cache/sources"
+  cp "$SEED_DIR"/*.json "$ROOT/.cache/sources/"
+  echo "PHY120: seeded $(ls -1 "$SEED_DIR" | wc -l | tr -d ' ') cached listings into .cache/sources"
+fi
+
 ROOT=$(cd "$(dirname "$0")/.." && pwd)
 CONF="$ROOT/.cache/xnu-work/iokit/conf/files"
 [ -f "$CONF" ] || { echo "PHY120: no iokit/conf/files, nothing to do"; exit 0; }
