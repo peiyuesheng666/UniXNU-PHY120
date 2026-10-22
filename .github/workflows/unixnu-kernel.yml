@@ -139,8 +139,8 @@ jobs:
           # bindfs uses BINDM_FORCE_ROOT, an Apple-internal mount flag that is
           # absent from the open source tree; nothing sets it, so an unused bit
           # compiles and behaves identically. Keep build.sh's own warning flags.
-          XNU_KERNEL_CONFIG: RELEASE
-          XNU_MACHINE_CONFIG: T6020
+          XNU_KERNEL_CONFIG: DEVELOPMENT
+          XNU_MACHINE_CONFIG: BCM2837
           XNU_EXTRA_CFLAGS: '-Wno-reserved-identifier -Wno-pre-c11-compat -Wno-missing-designated-field-initializers -Wno-suggest-override -Wno-unnecessary-virtual-specifier -Wno-suggest-destructor-override -Wno-ms-bitfield-padding -DBINDM_FORCE_ROOT=0x80000000U'
         run: |
           set -o pipefail
