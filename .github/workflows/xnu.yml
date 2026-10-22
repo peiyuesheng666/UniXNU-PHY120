@@ -8,9 +8,9 @@ on:
   workflow_dispatch:
     inputs:
       machine_config:
-        description: XNU MACHINE_CONFIG
+        description: XNU MACHINE_CONFIG (BCM2837 is what UniXNU documents; SWEET needs private patches)
         type: string
-        default: SWEET
+        default: BCM2837
       kernel_config:
         description: XNU KERNEL_CONFIG
         type: choice
