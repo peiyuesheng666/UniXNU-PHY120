@@ -1,0 +1,83 @@
+name: PHY120 UniXNU kernel (official path)
+
+# Builds kernel.macho the way UniXNU intends: ./unixnu applies its own xnu patches,
+# builds with Xcode and prelinks against the target IPSW's kernelcache. This runs on
+# a GitHub macOS runner, so no Mac is needed locally.
+#
+# The harness-based workflow (xnu.yml) stays as a fallback: it can build a bare
+# kernel but cannot do the prelink step.
+on:
+  workflow_dispatch:
+    inputs:
+      ipsw_url:
+        description: IPSW to take the kernelcache from (leave empty for board.toml's)
+        type: string
+        default: ''
+permissions:
+  contents: read
+
+jobs:
+  kernel:
+    runs-on: macos-14
+    timeout-minutes: 180
+    steps:
+      - name: Checkout the port
+        uses: actions/checkout@v4
+        with:
+          path: UniXNU-PHY120
+
+      - name: Checkout the UniXNU build driver
+        uses: actions/checkout@v4
+        with:
+          repository: UniXNU/UniXNU
+          path: UniXNU
+
+      - name: Toolchain
+        run: |
+          brew install cmake ninja unifdef llvm mtools dtc || true
+          # UniXNU's driver looks for Homebrew's LLVM directly
+          ls -d /opt/homebrew/opt/llvm/bin 2>/dev/null || true
+          xcodebuild -version
+          xcrun --sdk iphoneos --show-sdk-version
+          python3 --version
+
+      - name: Select the device config
+        working-directory: UniXNU
+        run: |
+          ./unixnu defconfig PHY120_defconfig -D ../UniXNU-PHY120
+          ./unixnu status || true
+
+      - name: Fetch sources
+        working-directory: UniXNU
+        run: ./unixnu fetch
+
+      - name: Fetch the IPSW members
+        working-directory: UniXNU
+        run: |
+          if [ -n "${{ inputs.ipsw_url }}" ]; then
+            ./unixnu ipsw fetch --ipsw "${{ inputs.ipsw_url }}"
+          else
+            ./unixnu ipsw fetch
+          fi
+
+      - name: Build and prelink the kernel
+        working-directory: UniXNU
+        run: |
+          set -o pipefail
+          ./unixnu build kernel 2>&1 | tee ../kernel.log
+
+      - name: Report
+        if: always()
+        run: |
+          ls -l UniXNU/out/PHY120/kernel/ 2>/dev/null || true
+          tail -40 kernel.log || true
+
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: phy120-kernel-macho
+          path: |
+            UniXNU/out/PHY120/kernel/
+            UniXNU/out/PHY120/logs/
+            kernel.log
+          retention-days: 14
